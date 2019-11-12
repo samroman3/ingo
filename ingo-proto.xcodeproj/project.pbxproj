@@ -3,20 +3,25 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0FA4944BD578F72847163CF5 /* Pods_ingo_protoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 898F1EB8ECDD20758E4E60D9 /* Pods_ingo_protoTests.framework */; };
 		3A9ED687237B3E3400D64483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED686237B3E3400D64483 /* AppDelegate.swift */; };
 		3A9ED689237B3E3400D64483 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED688237B3E3400D64483 /* SceneDelegate.swift */; };
-		3A9ED68B237B3E3400D64483 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED68A237B3E3400D64483 /* ViewController.swift */; };
 		3A9ED68E237B3E3400D64483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A9ED68C237B3E3400D64483 /* Main.storyboard */; };
 		3A9ED690237B3E3700D64483 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A9ED68F237B3E3700D64483 /* Assets.xcassets */; };
 		3A9ED693237B3E3700D64483 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A9ED691237B3E3700D64483 /* LaunchScreen.storyboard */; };
 		3A9ED69E237B3E3700D64483 /* ingo_protoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED69D237B3E3700D64483 /* ingo_protoTests.swift */; };
 		3A9ED6A9237B3E3700D64483 /* ingo_protoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6A8237B3E3700D64483 /* ingo_protoUITests.swift */; };
 		3A9ED6B7237B3E8900D64483 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A9ED6B6237B3E8900D64483 /* GoogleService-Info.plist */; };
+		3A9ED6C2237B425300D64483 /* String+Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C1237B425300D64483 /* String+Validations.swift */; };
+		3A9ED6C4237B427E00D64483 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C3237B427E00D64483 /* AppUser.swift */; };
+		3A9ED6C6237B429000D64483 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C5237B429000D64483 /* Comment.swift */; };
+		3A9ED6C8237B42A100D64483 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C7237B42A100D64483 /* Post.swift */; };
+		3A9ED6CA237B42BB00D64483 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C9237B42BB00D64483 /* FirebaseAuthService.swift */; };
+		3A9ED6CC237B42CF00D64483 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */; };
 		65436CFF2306A214459E2FB1 /* Pods_ingo_proto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F15EB9DBAE541140ED85902 /* Pods_ingo_proto.framework */; };
 		F12674350D145778BDA7FCCA /* Pods_ingo_proto_ingo_protoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D34CEC2744AA9E9F88E385 /* Pods_ingo_proto_ingo_protoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -43,7 +48,6 @@
 		3A9ED683237B3E3400D64483 /* ingo-proto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ingo-proto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A9ED686237B3E3400D64483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A9ED688237B3E3400D64483 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3A9ED68A237B3E3400D64483 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3A9ED68D237B3E3400D64483 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3A9ED68F237B3E3700D64483 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3A9ED692237B3E3700D64483 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,6 +59,12 @@
 		3A9ED6A8237B3E3700D64483 /* ingo_protoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingo_protoUITests.swift; sourceTree = "<group>"; };
 		3A9ED6AA237B3E3700D64483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A9ED6B6237B3E8900D64483 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3A9ED6C1237B425300D64483 /* String+Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validations.swift"; sourceTree = "<group>"; };
+		3A9ED6C3237B427E00D64483 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
+		3A9ED6C5237B429000D64483 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		3A9ED6C7237B42A100D64483 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		3A9ED6C9237B42BB00D64483 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
+		3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		49A33EE1C24E23D940D16E43 /* Pods-ingo-proto-ingo-protoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ingo-proto-ingo-protoUITests.release.xcconfig"; path = "Target Support Files/Pods-ingo-proto-ingo-protoUITests/Pods-ingo-proto-ingo-protoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6F15EB9DBAE541140ED85902 /* Pods_ingo_proto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ingo_proto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D34CEC2744AA9E9F88E385 /* Pods_ingo_proto_ingo_protoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ingo_proto_ingo_protoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +123,6 @@
 				2F72BA53A5529D8C463A16C6 /* Pods-ingo-protoTests.debug.xcconfig */,
 				9664F98668CC7392AE9154D3 /* Pods-ingo-protoTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -142,13 +151,13 @@
 		3A9ED685237B3E3400D64483 /* ingo-proto */ = {
 			isa = PBXGroup;
 			children = (
-				3A9ED686237B3E3400D64483 /* AppDelegate.swift */,
-				3A9ED688237B3E3400D64483 /* SceneDelegate.swift */,
-				3A9ED68A237B3E3400D64483 /* ViewController.swift */,
+				3A9ED6B8237B414C00D64483 /* Controllers */,
+				3A9ED6BC237B41B400D64483 /* Models */,
+				3A9ED6BF237B421F00D64483 /* Utilities */,
+				3A9ED6BD237B41D900D64483 /* Supporting Files */,
 				3A9ED68C237B3E3400D64483 /* Main.storyboard */,
 				3A9ED6B6237B3E8900D64483 /* GoogleService-Info.plist */,
 				3A9ED68F237B3E3700D64483 /* Assets.xcassets */,
-				3A9ED691237B3E3700D64483 /* LaunchScreen.storyboard */,
 				3A9ED694237B3E3700D64483 /* Info.plist */,
 			);
 			path = "ingo-proto";
@@ -170,6 +179,67 @@
 				3A9ED6AA237B3E3700D64483 /* Info.plist */,
 			);
 			path = "ingo-protoUITests";
+			sourceTree = "<group>";
+		};
+		3A9ED6B8237B414C00D64483 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				3A9ED6BB237B418F00D64483 /* Authentication */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		3A9ED6BB237B418F00D64483 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		3A9ED6BC237B41B400D64483 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3A9ED6C3237B427E00D64483 /* AppUser.swift */,
+				3A9ED6C5237B429000D64483 /* Comment.swift */,
+				3A9ED6C7237B42A100D64483 /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		3A9ED6BD237B41D900D64483 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3A9ED686237B3E3400D64483 /* AppDelegate.swift */,
+				3A9ED688237B3E3400D64483 /* SceneDelegate.swift */,
+				3A9ED691237B3E3700D64483 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3A9ED6BE237B41F400D64483 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				3A9ED6C9237B42BB00D64483 /* FirebaseAuthService.swift */,
+				3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		3A9ED6BF237B421F00D64483 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				3A9ED6C0237B422900D64483 /* Extensions */,
+				3A9ED6BE237B41F400D64483 /* Firebase */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		3A9ED6C0237B422900D64483 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				3A9ED6C1237B425300D64483 /* String+Validations.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -412,9 +482,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A9ED68B237B3E3400D64483 /* ViewController.swift in Sources */,
+				3A9ED6C6237B429000D64483 /* Comment.swift in Sources */,
+				3A9ED6C4237B427E00D64483 /* AppUser.swift in Sources */,
 				3A9ED687237B3E3400D64483 /* AppDelegate.swift in Sources */,
+				3A9ED6C8237B42A100D64483 /* Post.swift in Sources */,
 				3A9ED689237B3E3400D64483 /* SceneDelegate.swift in Sources */,
+				3A9ED6CC237B42CF00D64483 /* FirestoreService.swift in Sources */,
+				3A9ED6C2237B425300D64483 /* String+Validations.swift in Sources */,
+				3A9ED6CA237B42BB00D64483 /* FirebaseAuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
