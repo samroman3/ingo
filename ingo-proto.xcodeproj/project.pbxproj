@@ -22,6 +22,8 @@
 		3A9ED6C8237B42A100D64483 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C7237B42A100D64483 /* Post.swift */; };
 		3A9ED6CA237B42BB00D64483 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C9237B42BB00D64483 /* FirebaseAuthService.swift */; };
 		3A9ED6CC237B42CF00D64483 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */; };
+		3A9ED6CE237B446600D64483 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CD237B446600D64483 /* LoginViewController.swift */; };
+		3A9ED6D0237B44B200D64483 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CF237B44B200D64483 /* SignUpViewController.swift */; };
 		65436CFF2306A214459E2FB1 /* Pods_ingo_proto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F15EB9DBAE541140ED85902 /* Pods_ingo_proto.framework */; };
 		F12674350D145778BDA7FCCA /* Pods_ingo_proto_ingo_protoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D34CEC2744AA9E9F88E385 /* Pods_ingo_proto_ingo_protoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -65,6 +67,8 @@
 		3A9ED6C7237B42A100D64483 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		3A9ED6C9237B42BB00D64483 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
+		3A9ED6CD237B446600D64483 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3A9ED6CF237B44B200D64483 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		49A33EE1C24E23D940D16E43 /* Pods-ingo-proto-ingo-protoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ingo-proto-ingo-protoUITests.release.xcconfig"; path = "Target Support Files/Pods-ingo-proto-ingo-protoUITests/Pods-ingo-proto-ingo-protoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6F15EB9DBAE541140ED85902 /* Pods_ingo_proto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ingo_proto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D34CEC2744AA9E9F88E385 /* Pods_ingo_proto_ingo_protoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ingo_proto_ingo_protoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +196,8 @@
 		3A9ED6BB237B418F00D64483 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				3A9ED6CF237B44B200D64483 /* SignUpViewController.swift */,
+				3A9ED6CD237B446600D64483 /* LoginViewController.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -485,6 +491,8 @@
 				3A9ED6C6237B429000D64483 /* Comment.swift in Sources */,
 				3A9ED6C4237B427E00D64483 /* AppUser.swift in Sources */,
 				3A9ED687237B3E3400D64483 /* AppDelegate.swift in Sources */,
+				3A9ED6CE237B446600D64483 /* LoginViewController.swift in Sources */,
+				3A9ED6D0237B44B200D64483 /* SignUpViewController.swift in Sources */,
 				3A9ED6C8237B42A100D64483 /* Post.swift in Sources */,
 				3A9ED689237B3E3400D64483 /* SceneDelegate.swift in Sources */,
 				3A9ED6CC237B42CF00D64483 /* FirestoreService.swift in Sources */,
