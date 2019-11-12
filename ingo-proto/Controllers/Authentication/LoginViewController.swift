@@ -49,11 +49,21 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-//    lazy var emailIcon: UIImageView = {
-//        let icon = UIImageView()
-//        icon.image = UIImage(named)
-//        return icon
-//    }()
+    lazy var emailIcon: UIImageView = {
+        let icon = UIImageView()
+        icon.image = UIImage(systemName: "person.circle", withConfiguration: .none)
+        icon.tintColor = .systemPurple
+        icon.backgroundColor = .clear
+        return icon
+    }()
+    
+    lazy var passwordIcon: UIImageView = {
+        let icon = UIImageView()
+        icon.image = UIImage(systemName: "lock.circle", withConfiguration: .none)
+        icon.tintColor = .systemPurple
+        icon.backgroundColor = .clear
+        return icon
+    }()
     
     lazy var loginButton: UIButton = {
         let button = UIButton(type: .system)
@@ -154,6 +164,8 @@ class LoginViewController: UIViewController {
         setupLogoLabel()
         setupCreateAccountButton()
         setupLoginStackView()
+        setupEmailIcon()
+        setupPasswordIcon()
         setUpLoginButton()
     }
     
@@ -173,9 +185,29 @@ class LoginViewController: UIViewController {
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([stackView.bottomAnchor.constraint(equalTo: createAccountButton.topAnchor, constant: -350),
-                                     stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-                                     stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+                                     stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
+                                     stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
                                      stackView.heightAnchor.constraint(equalToConstant: 100)])
+    }
+    
+    private func setupEmailIcon(){
+        view.addSubview(emailIcon)
+        emailIcon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            emailIcon.trailingAnchor.constraint(equalTo: emailTextField.leadingAnchor, constant: -10),
+            emailIcon.centerYAnchor.constraint(equalTo: emailTextField.centerYAnchor),
+            emailIcon.heightAnchor.constraint(equalToConstant: 30),
+        emailIcon.widthAnchor.constraint(equalToConstant: 30)])
+    }
+    
+    private func setupPasswordIcon(){
+        view.addSubview(passwordIcon)
+        passwordIcon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            passwordIcon.trailingAnchor.constraint(equalTo: passwordTextField.leadingAnchor, constant: -10),
+            passwordIcon.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
+            passwordIcon.heightAnchor.constraint(equalToConstant: 30),
+        passwordIcon.widthAnchor.constraint(equalToConstant: 30)])
     }
     
     private func setUpLoginButton(){
