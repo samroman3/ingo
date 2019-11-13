@@ -32,10 +32,11 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = " Enter Email..."
         textField.autocorrectionType = .no
-        textField.textAlignment = .center
+        textField.textAlignment = .left
         textField.layer.cornerRadius = 15
-        textField.backgroundColor = .white
-        textField.textColor = .black
+        textField.backgroundColor = .init(white: 1.0, alpha: 0.2)
+        textField.textColor = .white
+        textField.borderStyle = .roundedRect
         textField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
         return textField
     }()
@@ -44,11 +45,12 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = " Enter Password..."
         textField.autocorrectionType = .no
-        textField.textAlignment = .center
+        textField.textAlignment = .left
         textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 15
-        textField.backgroundColor = .white
-        textField.textColor = .black
+        textField.backgroundColor = .init(white: 1.0, alpha: 0.2)
+        textField.textColor = .white
+        textField.borderStyle = .roundedRect
         textField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
         return textField
     }()
@@ -57,10 +59,11 @@ class LoginViewController: UIViewController {
         let textField = UITextField()
         textField.placeholder = " Enter Username..."
         textField.autocorrectionType = .no
-        textField.textAlignment = .center
+        textField.textAlignment = .left
         textField.layer.cornerRadius = 15
-        textField.backgroundColor = .white
-        textField.textColor = .black
+        textField.backgroundColor = .init(white: 1.0, alpha: 0.2)
+        textField.textColor = .white
+        textField.borderStyle = .roundedRect
         textField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
         textField.alpha = 0.0
         textField.isEnabled = false
