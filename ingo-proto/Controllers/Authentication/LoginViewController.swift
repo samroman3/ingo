@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import TransitionButton
+import SwiftEntryKit
 
 class LoginViewController: UIViewController {
     
@@ -104,6 +105,7 @@ class LoginViewController: UIViewController {
         button.backgroundColor = .systemPurple
         button.addTarget(self, action: #selector(tryLogin), for: .touchUpInside)
         button.isEnabled = false
+        self.setGradientBackground(colorTop: .systemPurple, colorBottom: .white, newView: button)
         return button
     }()
     
@@ -115,6 +117,7 @@ class LoginViewController: UIViewController {
         button.backgroundColor = .systemPurple
         button.addTarget(self, action: #selector(trySignUp), for: .touchUpInside)
         button.isEnabled = false
+        self.setGradientBackground(colorTop: .systemPurple, colorBottom: .white, newView: button)
         return button
     }()
     
@@ -138,6 +141,65 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    //MARK: SwiftEntryKit Methods
+    
+    private func showFloatCellAlert(with attributes: EKAttributes, title: String, description: String, image: String?) {
+        let title = title
+        let desc = description
+        let image = image
+        var attribute = EKAttributes.topFloat
+        attribute.entryBackground = EKAttributes.BackgroundStyle.gradient(gradient: .init(colors: [.init(red: 175, green: 82, blue: 222), .init(red: 204, green: 102, blue: 255) ], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
+        
+        showNotificationMessage(attributes: attribute,
+                                    title: title,
+                                    desc: desc,
+                                    textColor: .white,
+                                    imageName: image)
+    }
+    
+    private func showNotificationMessage(attributes: EKAttributes,
+                                         title: String,
+                                         desc: String,
+                                         textColor: EKColor,
+                                         imageName: String? = nil) {
+        
+        let titleStyle = EKProperty.LabelStyle(font: .boldSystemFont(ofSize: 30)!, color: .standardContent, alignment: .center, displayMode: .dark, numberOfLines: 0)
+        
+        let title = EKProperty.LabelContent(text: title, style: titleStyle, accessibilityIdentifier: "title")
+    
+        let description = EKProperty.LabelContent(text: desc, style: .init(font: .systemFont(ofSize: 14), color: .standardContent, alignment: .center, displayMode: .dark, numberOfLines: 0), accessibilityIdentifier: "description")
+        var image: EKProperty.ImageContent?
+        
+        if let imageName = imageName {
+            image = EKProperty.ImageContent(
+                image: UIImage(named: imageName)!.withRenderingMode(.alwaysTemplate),
+                displayMode: .dark,
+                size: CGSize(width: 35, height: 35),
+                tint: textColor,
+                accessibilityIdentifier: "thumbnail"
+            )
+        }
+        let simpleMessage = EKSimpleMessage(
+            image: image,
+            title: title,
+            description: description
+        )
+        let notificationMessage = EKNotificationMessage(simpleMessage: simpleMessage)
+        let contentView = EKNotificationMessageView(with: notificationMessage)
+        
+        SwiftEntryKit.display(entry: contentView, using: attributes)
+    }
+    
+    //function to set gradients for views
+    func setGradientBackground(colorTop: UIColor, colorBottom: UIColor,newView:UIView) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorBottom.cgColor, colorTop.cgColor]
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer.locations = [0, 1]
+        gradientLayer.frame = newView.bounds
+        newView.layer.insertSublayer(gradientLayer, at: 0)
+    }
     //MARK: Lifecycle methods
     
     override func viewDidLoad() {
@@ -235,21 +297,23 @@ class LoginViewController: UIViewController {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             loginButton.startAnimation()
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
-                self.showAlert(with: "Error", and: "Please fill out all fields.")          }
+                self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please fill out all fields.", image: nil)
+            }
             return
         }
         
         guard email.isValidEmail else {
             loginButton.startAnimation()
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
-                self.showAlert(with: "Error", and: "Please enter a valid email")          }
+                self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid email", image: nil)
+            }
             return
         }
         
         guard password.isValidPassword else {
             loginButton.startAnimation()
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
-                self.showAlert(with: "Error", and: "Please enter a valid password. Passwords must have at least 8 characters.")
+                self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid password. Passwords must have at least 8 characters.", image: nil)
             }
             return
         }
@@ -264,7 +328,7 @@ class LoginViewController: UIViewController {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
-                self.showAlert(with: "Error", and: "Please fill out all fields.")          }
+                self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please fill out all fields.", image: nil)        }
             
             return
         }
@@ -272,7 +336,7 @@ class LoginViewController: UIViewController {
         guard email.isValidEmail else {
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
-                self.showAlert(with: "Error", and: "Please enter a valid email")          }
+                self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid email", image: nil)         }
            
             return
         }
@@ -280,7 +344,7 @@ class LoginViewController: UIViewController {
         guard password.isValidPassword else {
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
-                self.showAlert(with: "Error", and: "Please enter a valid password. Passwords must have at least 8 characters.")            }
+                self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid password. Passwords must have at least 8 characters.", image: nil)           }
             
             return
         }
@@ -288,7 +352,7 @@ class LoginViewController: UIViewController {
         guard userNameTextField.hasText else {
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
-                self.showAlert(with: "Error", and: "Please enter a valid user name.")
+                self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid user name.", image: nil)
             }
             
             return
@@ -297,6 +361,7 @@ class LoginViewController: UIViewController {
         FirebaseAuthService.manager.createNewUser(email: email.lowercased(), password: password) { [weak self] (result) in
             self?.handleCreateAccountResponse(with: result)
         }
+        
     }
     
     //MARK: Private methods
@@ -344,7 +409,9 @@ class LoginViewController: UIViewController {
                     }
                 }
             case .failure(let error):
-                self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
+                self.signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.3) {
+                    self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
+                }
                 
             }
         }

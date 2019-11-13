@@ -9,6 +9,7 @@ target 'ingo-proto' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Firestore'
         pod 'TransitionButton'
+	pod 'SwiftEntryKit', '1.2.3'
   target 'ingo-protoTests' do
     inherit! :search_paths
     # Pods for testing
