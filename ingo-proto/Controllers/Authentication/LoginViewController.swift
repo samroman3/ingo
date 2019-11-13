@@ -142,9 +142,28 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.301, green: 0.33, blue: 0.36, alpha: 1)
+        view.backgroundColor = UIColor(red: 0.31, green: 0.33, blue: 0.36, alpha: 1)
         setupSubViews()
+        view.addGestureRecognizer(tappedScreenRecognizer)
+
     }
+    
+    //MARK: NotificationCenter & Gesture Methods
+       
+    lazy var tappedScreenRecognizer: UITapGestureRecognizer = {
+           let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureTapped(sender:)))
+           
+           return tapGesture
+       }()
+
+    @objc private func tapGestureTapped(sender: UIView) {
+        userNameTextField.resignFirstResponder()
+        passwordTextField.resignFirstResponder()
+        emailTextField.resignFirstResponder()
+    }
+       
+
+       
     
     //MARK: Obj-C methods
     
@@ -288,6 +307,11 @@ class LoginViewController: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
+    
+    
+    
+    
+    //MARK: Firebase Methods
     private func handleLoginResponse(with result: Result<User, Error>) {
         switch result {
         case .failure(let error):
@@ -379,7 +403,7 @@ class LoginViewController: UIViewController {
         self.view.addSubview(stackView)
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([stackView.bottomAnchor.constraint(equalTo: createAccountButton.topAnchor, constant: -350),
+        NSLayoutConstraint.activate([stackView.bottomAnchor.constraint(equalTo: createAccountButton.topAnchor, constant: -400),
                                      stackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
                                      stackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
                                      stackView.heightAnchor.constraint(equalToConstant: 100)])
@@ -479,4 +503,14 @@ class LoginViewController: UIViewController {
                                      alreadyHaveAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
                                      alreadyHaveAccountButton.heightAnchor.constraint(equalToConstant: 50)])
     }
+}
+
+
+    //MARK: TextField Delegate Extension
+
+extension LoginViewController: UITextFieldDelegate {
+func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    textField.resignFirstResponder()
+    return true
+}
 }
