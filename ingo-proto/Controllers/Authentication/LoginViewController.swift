@@ -18,10 +18,10 @@ class LoginViewController: UIViewController {
     lazy var logoLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-//        label.font = UIFont(name: "Trebuchet MS", size: 100)
+        //        label.font = UIFont(name: "Trebuchet MS", size: 100)
         let attributedTitle = NSMutableAttributedString(string: "in", attributes: [NSAttributedString.Key.font: UIFont(name: "Trebuchet MS", size: 100)!, NSAttributedString.Key.foregroundColor: UIColor.systemPurple])
         attributedTitle.append(NSAttributedString(string: "go", attributes: [NSAttributedString.Key.font: UIFont(name: "Trebuchet MS", size: 134)!, NSAttributedString.Key.foregroundColor:  UIColor.systemPurple ]))
-//        label.textColor = .systemPurple
+        //        label.textColor = .systemPurple
         label.attributedText = attributedTitle
         label.backgroundColor = .clear
         label.textAlignment = .center
@@ -58,17 +58,18 @@ class LoginViewController: UIViewController {
         textField.placeholder = " Enter Username..."
         textField.autocorrectionType = .no
         textField.textAlignment = .center
-        textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 15
         textField.backgroundColor = .white
         textField.textColor = .black
         textField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
+        textField.alpha = 0.0
+        textField.isEnabled = false
         return textField
     }()
     
     lazy var emailIcon: UIImageView = {
         let icon = UIImageView()
-        icon.image = UIImage(systemName: "person.circle", withConfiguration: .none)
+        icon.image = UIImage(systemName: "at", withConfiguration: .none)
         icon.tintColor = .lightGray
         icon.backgroundColor = .clear
         return icon
@@ -79,6 +80,15 @@ class LoginViewController: UIViewController {
         icon.image = UIImage(systemName: "lock.circle", withConfiguration: .none)
         icon.tintColor = .lightGray
         icon.backgroundColor = .clear
+        return icon
+    }()
+    
+    lazy var userNameIcon: UIImageView = {
+        let icon = UIImageView()
+        icon.image = UIImage(systemName: "person.circle", withConfiguration: .none)
+        icon.tintColor = .lightGray
+        icon.backgroundColor = .clear
+        icon.alpha = 0
         return icon
     }()
     
@@ -136,43 +146,61 @@ class LoginViewController: UIViewController {
     
     @objc func validateFields() {
         guard emailTextField.hasText, passwordTextField.hasText else {
-            loginButton.backgroundColor = UIColor.lightGray
             loginButton.isEnabled = false
             return
         }
         loginButton.isEnabled = true
-        
-        loginButton.backgroundColor = UIColor.systemPurple
-        emailIcon.tintColor = .systemPurple ; passwordIcon.tintColor = .systemPurple
+        emailIcon.tintColor = .systemPurple
+        passwordIcon.tintColor = .systemPurple
+        userNameIcon.tintColor = .systemPurple
     }
     
     @objc func showSignUp() {
-        signUpButton.isEnabled = true
-        loginButton.isEnabled = false
+        
         loginButtonLeadingAnchor.constant = 415
-        createAccountButton.isHidden = true
-        createAccountButton.isEnabled = false
         alreadyHaveAccountButton.isHidden = false
         alreadyHaveAccountButton.isEnabled = true
+        createAccountButton.isHidden = true
+        createAccountButton.isEnabled = false
         print(loginButtonLeadingAnchor.constant)
-        UIView.animate(withDuration: 1 ) { [unowned self] in
+        UIView.animate(withDuration: 1, animations: {
             self.view.layoutIfNeeded()
+        }) { (action) in
+            UIView.animate(withDuration: 0.5) {
+                self.usernameTopConstraint.constant = 60
+                self.userNameTextField.alpha = 1
+                self.userNameTextField.isEnabled = true
+                self.userNameIcon.alpha = 1
+                self.view.layoutIfNeeded()
+            }
+            self.signUpButton.isEnabled = true
+            self.loginButton.isEnabled = false
         }
     }
     
     @objc func showLogIn() {
         let oldOffset = loginButtonLeadingAnchor.constant
-        signUpButton.isEnabled = false
-        loginButton.isEnabled = true
         loginButtonLeadingAnchor.constant = oldOffset - 415
         createAccountButton.isHidden = false
         createAccountButton.isEnabled = true
         alreadyHaveAccountButton.isHidden = true
         alreadyHaveAccountButton.isEnabled = false
         print(loginButtonLeadingAnchor.constant)
-        UIView.animate(withDuration: 1 ) { [unowned self] in
+        UIView.animate(withDuration: 1, animations: {
             self.view.layoutIfNeeded()
+        }) { (action) in
+            UIView.animate(withDuration: 0.5) {
+                let userOffset = self.usernameTopConstraint.constant
+                self.usernameTopConstraint.constant = userOffset - 60
+                self.userNameTextField.alpha = 0.0
+                self.userNameTextField.isEnabled = false
+                self.userNameIcon.alpha = 0
+                self.view.layoutIfNeeded()
+            }
+            self.signUpButton.isEnabled = false
+            self.loginButton.isEnabled = true
         }
+        
     }
     
     
@@ -236,15 +264,15 @@ class LoginViewController: UIViewController {
         case .failure(let error):
             showAlert(with: "Error", and: "Could not log in. Error: \(error)")
         case .success:
-//            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-//                let sceneDelegate = windowScene.delegate as? SceneDelegate
-//                else {
-//                    return
-//            }
+            //            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+            //                let sceneDelegate = windowScene.delegate as? SceneDelegate
+            //                else {
+            //                    return
+            //            }
             print("login successful")
-//            UIView.transition(with: self.view, duration: 0.1, options: .transitionFlipFromBottom, animations: {
-//                sceneDelegate.window?.rootViewController = RedditTabBarViewController()
-//            }, completion: nil)
+            //            UIView.transition(with: self.view, duration: 0.1, options: .transitionFlipFromBottom, animations: {
+            //                sceneDelegate.window?.rootViewController = RedditTabBarViewController()
+            //            }, completion: nil)
         }
     }
     
@@ -265,23 +293,23 @@ class LoginViewController: UIViewController {
     }
     
     private func handleCreatedUserInFirestore(result: Result<Void, Error>) {
-            switch result {
-            case .success:
-                guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                    let sceneDelegate = windowScene.delegate as? SceneDelegate
-                    else {
-                        self.dismiss(animated: true, completion: nil)
-                        return
-                }
-                print("sign up successful!")
-                
-    //            UIView.transition(with: self.view, duration: 0.1, options: .transitionFlipFromBottom, animations: {
-    //                sceneDelegate.window?.rootViewController = RedditTabBarViewController()
-    //            }, completion: nil)
-            case .failure(let error):
-                self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
+        switch result {
+        case .success:
+            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                let sceneDelegate = windowScene.delegate as? SceneDelegate
+                else {
+                    self.dismiss(animated: true, completion: nil)
+                    return
             }
+            print("sign up successful!")
+            
+            //            UIView.transition(with: self.view, duration: 0.1, options: .transitionFlipFromBottom, animations: {
+            //                sceneDelegate.window?.rootViewController = RedditTabBarViewController()
+        //            }, completion: nil)
+        case .failure(let error):
+            self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
         }
+    }
     
     //MARK: UI Setup
     
@@ -289,8 +317,10 @@ class LoginViewController: UIViewController {
         setupLogoLabel()
         setupCreateAccountButton()
         setupLoginStackView()
+        setupUsernameField()
         setupEmailIcon()
         setupPasswordIcon()
+        setupUserNameIcon()
         setUpLoginButton()
         setUpSignUpButton()
         setupHaveAccountButton()
@@ -318,14 +348,19 @@ class LoginViewController: UIViewController {
     }
     
     private func setupUsernameField(){
+        view.addSubview(userNameTextField)
         userNameTextField.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            userNameTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15),
+            usernameTopConstraint,
             userNameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
             userNameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -15),
-            userNameTextField.heightAnchor.constraint(equalToConstant: 100)
+            userNameTextField.heightAnchor.constraint(equalTo: passwordTextField.heightAnchor)
         ])
     }
+    
+    lazy var usernameTopConstraint: NSLayoutConstraint = {
+        userNameTextField.topAnchor.constraint(equalTo: passwordTextField.topAnchor, constant:  0)
+    }()
     
     
     private func setupEmailIcon(){
@@ -335,7 +370,7 @@ class LoginViewController: UIViewController {
             emailIcon.trailingAnchor.constraint(equalTo: emailTextField.leadingAnchor, constant: -10),
             emailIcon.centerYAnchor.constraint(equalTo: emailTextField.centerYAnchor),
             emailIcon.heightAnchor.constraint(equalToConstant: 30),
-        emailIcon.widthAnchor.constraint(equalToConstant: 30)])
+            emailIcon.widthAnchor.constraint(equalToConstant: 30)])
     }
     
     private func setupPasswordIcon(){
@@ -345,16 +380,26 @@ class LoginViewController: UIViewController {
             passwordIcon.trailingAnchor.constraint(equalTo: passwordTextField.leadingAnchor, constant: -10),
             passwordIcon.centerYAnchor.constraint(equalTo: passwordTextField.centerYAnchor),
             passwordIcon.heightAnchor.constraint(equalToConstant: 30),
-        passwordIcon.widthAnchor.constraint(equalToConstant: 30)])
+            passwordIcon.widthAnchor.constraint(equalToConstant: 30)])
+    }
+    
+    private func setupUserNameIcon(){
+        view.addSubview(userNameIcon)
+        userNameIcon.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            userNameIcon.trailingAnchor.constraint(equalTo: userNameTextField.leadingAnchor, constant: -10),
+            userNameIcon.centerYAnchor.constraint(equalTo: userNameTextField.centerYAnchor),
+            userNameIcon.heightAnchor.constraint(equalToConstant: 30),
+            userNameIcon.widthAnchor.constraint(equalToConstant: 30)])
     }
     
     private func setUpLoginButton(){
         view.addSubview(loginButton)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            loginButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 30), loginButton.widthAnchor.constraint(equalTo: self.view.widthAnchor),
+            loginButton.topAnchor.constraint(equalTo: userNameTextField.bottomAnchor, constant: 30), loginButton.widthAnchor.constraint(equalTo: self.view.widthAnchor),
             loginButton.heightAnchor.constraint(equalToConstant: 70),
-        loginButtonLeadingAnchor])
+            loginButtonLeadingAnchor])
         view.layoutIfNeeded()
         
     }
@@ -372,6 +417,11 @@ class LoginViewController: UIViewController {
             signUpButton.heightAnchor.constraint(equalToConstant: 70)])
     }
     
+    
+    
+    
+    
+    
     private func setupCreateAccountButton() {
         view.addSubview(createAccountButton)
         
@@ -383,12 +433,12 @@ class LoginViewController: UIViewController {
     }
     
     private func setupHaveAccountButton() {
-           view.addSubview(alreadyHaveAccountButton)
-           
-           alreadyHaveAccountButton.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([alreadyHaveAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                                        alreadyHaveAccountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                                        alreadyHaveAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-                                        alreadyHaveAccountButton.heightAnchor.constraint(equalToConstant: 50)])
-       }
+        view.addSubview(alreadyHaveAccountButton)
+        
+        alreadyHaveAccountButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([alreadyHaveAccountButton.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                                     alreadyHaveAccountButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                                     alreadyHaveAccountButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+                                     alreadyHaveAccountButton.heightAnchor.constraint(equalToConstant: 50)])
+    }
 }
