@@ -264,15 +264,15 @@ class LoginViewController: UIViewController {
         case .failure(let error):
             showAlert(with: "Error", and: "Could not log in. Error: \(error)")
         case .success:
-            //            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-            //                let sceneDelegate = windowScene.delegate as? SceneDelegate
-            //                else {
-            //                    return
-            //            }
+                        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                            let sceneDelegate = windowScene.delegate as? SceneDelegate
+                            else {
+                                return
+                        }
             print("login successful")
-            //            UIView.transition(with: self.view, duration: 0.1, options: .transitionFlipFromBottom, animations: {
-            //                sceneDelegate.window?.rootViewController = RedditTabBarViewController()
-            //            }, completion: nil)
+                        UIView.transition(with: self.view, duration: 0.1, options: .transitionFlipFromBottom, animations: {
+                            sceneDelegate.window?.rootViewController = MainTabViewController()
+                        }, completion: nil)
         }
     }
     
@@ -303,9 +303,9 @@ class LoginViewController: UIViewController {
             }
             print("sign up successful!")
             
-            //            UIView.transition(with: self.view, duration: 0.1, options: .transitionFlipFromBottom, animations: {
-            //                sceneDelegate.window?.rootViewController = RedditTabBarViewController()
-        //            }, completion: nil)
+                        UIView.transition(with: self.view, duration: 0.1, options: .transitionFlipFromBottom, animations: {
+                            sceneDelegate.window?.rootViewController = MainTabViewController()
+                    }, completion: nil)
         case .failure(let error):
             self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
         }

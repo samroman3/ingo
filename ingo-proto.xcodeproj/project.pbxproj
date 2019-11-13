@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0FA4944BD578F72847163CF5 /* Pods_ingo_protoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 898F1EB8ECDD20758E4E60D9 /* Pods_ingo_protoTests.framework */; };
+		3A3773D0237C53B60034EA59 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773CF237C53B60034EA59 /* MainTabViewController.swift */; };
+		3A3773D2237C54110034EA59 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773D1237C54110034EA59 /* FeedViewController.swift */; };
+		3A3773D4237C545A0034EA59 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773D3237C545A0034EA59 /* ProfileViewController.swift */; };
 		3A9ED687237B3E3400D64483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED686237B3E3400D64483 /* AppDelegate.swift */; };
 		3A9ED689237B3E3400D64483 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED688237B3E3400D64483 /* SceneDelegate.swift */; };
 		3A9ED68E237B3E3400D64483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A9ED68C237B3E3400D64483 /* Main.storyboard */; };
@@ -23,7 +26,6 @@
 		3A9ED6CA237B42BB00D64483 /* FirebaseAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C9237B42BB00D64483 /* FirebaseAuthService.swift */; };
 		3A9ED6CC237B42CF00D64483 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */; };
 		3A9ED6CE237B446600D64483 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CD237B446600D64483 /* LoginViewController.swift */; };
-		3A9ED6D0237B44B200D64483 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CF237B44B200D64483 /* SignUpViewController.swift */; };
 		65436CFF2306A214459E2FB1 /* Pods_ingo_proto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F15EB9DBAE541140ED85902 /* Pods_ingo_proto.framework */; };
 		F12674350D145778BDA7FCCA /* Pods_ingo_proto_ingo_protoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 88D34CEC2744AA9E9F88E385 /* Pods_ingo_proto_ingo_protoUITests.framework */; };
 /* End PBXBuildFile section */
@@ -47,6 +49,9 @@
 
 /* Begin PBXFileReference section */
 		2F72BA53A5529D8C463A16C6 /* Pods-ingo-protoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ingo-protoTests.debug.xcconfig"; path = "Target Support Files/Pods-ingo-protoTests/Pods-ingo-protoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3A3773CF237C53B60034EA59 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
+		3A3773D1237C54110034EA59 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		3A3773D3237C545A0034EA59 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3A9ED683237B3E3400D64483 /* ingo-proto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ingo-proto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A9ED686237B3E3400D64483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A9ED688237B3E3400D64483 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,7 +73,6 @@
 		3A9ED6C9237B42BB00D64483 /* FirebaseAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseAuthService.swift; sourceTree = "<group>"; };
 		3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		3A9ED6CD237B446600D64483 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		3A9ED6CF237B44B200D64483 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		49A33EE1C24E23D940D16E43 /* Pods-ingo-proto-ingo-protoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ingo-proto-ingo-protoUITests.release.xcconfig"; path = "Target Support Files/Pods-ingo-proto-ingo-protoUITests/Pods-ingo-proto-ingo-protoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		6F15EB9DBAE541140ED85902 /* Pods_ingo_proto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ingo_proto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		88D34CEC2744AA9E9F88E385 /* Pods_ingo_proto_ingo_protoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ingo_proto_ingo_protoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -188,6 +192,9 @@
 		3A9ED6B8237B414C00D64483 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3A3773CF237C53B60034EA59 /* MainTabViewController.swift */,
+				3A3773D3237C545A0034EA59 /* ProfileViewController.swift */,
+				3A3773D1237C54110034EA59 /* FeedViewController.swift */,
 				3A9ED6BB237B418F00D64483 /* Authentication */,
 			);
 			path = Controllers;
@@ -196,7 +203,6 @@
 		3A9ED6BB237B418F00D64483 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
-				3A9ED6CF237B44B200D64483 /* SignUpViewController.swift */,
 				3A9ED6CD237B446600D64483 /* LoginViewController.swift */,
 			);
 			path = Authentication;
@@ -491,9 +497,11 @@
 				3A9ED6C6237B429000D64483 /* Comment.swift in Sources */,
 				3A9ED6C4237B427E00D64483 /* AppUser.swift in Sources */,
 				3A9ED687237B3E3400D64483 /* AppDelegate.swift in Sources */,
+				3A3773D2237C54110034EA59 /* FeedViewController.swift in Sources */,
 				3A9ED6CE237B446600D64483 /* LoginViewController.swift in Sources */,
-				3A9ED6D0237B44B200D64483 /* SignUpViewController.swift in Sources */,
 				3A9ED6C8237B42A100D64483 /* Post.swift in Sources */,
+				3A3773D4237C545A0034EA59 /* ProfileViewController.swift in Sources */,
+				3A3773D0237C53B60034EA59 /* MainTabViewController.swift in Sources */,
 				3A9ED689237B3E3400D64483 /* SceneDelegate.swift in Sources */,
 				3A9ED6CC237B42CF00D64483 /* FirestoreService.swift in Sources */,
 				3A9ED6C2237B425300D64483 /* String+Validations.swift in Sources */,
