@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseAuth
+import TransitionButton
 
 class LoginViewController: UIViewController {
     
@@ -95,8 +96,8 @@ class LoginViewController: UIViewController {
         return icon
     }()
     
-    lazy var loginButton: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var loginButton: TransitionButton = {
+        let button = TransitionButton()
         button.setTitle("Login", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = button.titleLabel?.font.withSize(34)
@@ -106,8 +107,8 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    lazy var signUpButton: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var signUpButton: TransitionButton = {
+        let button = TransitionButton()
         button.setTitle("Sign Up", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.titleLabel?.font = button.titleLabel?.font.withSize(34)
@@ -165,6 +166,8 @@ class LoginViewController: UIViewController {
         alreadyHaveAccountButton.isEnabled = true
         createAccountButton.isHidden = true
         createAccountButton.isEnabled = false
+        let fields = [emailTextField, passwordTextField, userNameTextField]
+        fields.forEach({$0.text = ""})
         print(loginButtonLeadingAnchor.constant)
         UIView.animate(withDuration: 1, animations: {
             self.view.layoutIfNeeded()
@@ -188,6 +191,8 @@ class LoginViewController: UIViewController {
         createAccountButton.isEnabled = true
         alreadyHaveAccountButton.isHidden = true
         alreadyHaveAccountButton.isEnabled = false
+       let fields = [emailTextField, passwordTextField, userNameTextField]
+        fields.forEach({$0.text = ""})
         print(loginButtonLeadingAnchor.constant)
         UIView.animate(withDuration: 1, animations: {
             self.view.layoutIfNeeded()
@@ -209,20 +214,28 @@ class LoginViewController: UIViewController {
     
     @objc func tryLogin() {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
-            showAlert(with: "Error", and: "Please fill out all fields.")
+            loginButton.startAnimation()
+            loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
+                self.showAlert(with: "Error", and: "Please fill out all fields.")          }
             return
         }
         
         guard email.isValidEmail else {
-            showAlert(with: "Error", and: "Please enter a valid email")
+            loginButton.startAnimation()
+            loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
+                self.showAlert(with: "Error", and: "Please enter a valid email")          }
             return
         }
         
         guard password.isValidPassword else {
-            showAlert(with: "Error", and: "Please enter a valid password. Passwords must have at least 8 characters.")
+            loginButton.startAnimation()
+            loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
+                self.showAlert(with: "Error", and: "Please enter a valid password. Passwords must have at least 8 characters.")
+            }
             return
         }
         
+        loginButton.startAnimation()
         FirebaseAuthService.manager.loginUser(email: email.lowercased(), password: password) { (result) in
             self.handleLoginResponse(with: result)
         }
@@ -230,25 +243,38 @@ class LoginViewController: UIViewController {
     
     @objc func trySignUp() {
         guard let email = emailTextField.text, let password = passwordTextField.text else {
-            showAlert(with: "Error", and: "Please fill out all fields.")
+            signUpButton.startAnimation()
+            signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
+                self.showAlert(with: "Error", and: "Please fill out all fields.")          }
+            
             return
         }
         
         guard email.isValidEmail else {
-            showAlert(with: "Error", and: "Please enter a valid email")
+            signUpButton.startAnimation()
+            signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
+                self.showAlert(with: "Error", and: "Please enter a valid email")          }
+           
             return
         }
         
         guard password.isValidPassword else {
-            showAlert(with: "Error", and: "Please enter a valid password. Passwords must have at least 8 characters.")
+            signUpButton.startAnimation()
+            signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
+                self.showAlert(with: "Error", and: "Please enter a valid password. Passwords must have at least 8 characters.")            }
+            
             return
         }
         
         guard userNameTextField.hasText else {
-            showAlert(with: "Error", and: "Please enter a valid user name.")
+            signUpButton.startAnimation()
+            signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
+                self.showAlert(with: "Error", and: "Please enter a valid user name.")
+            }
+            
             return
         }
-        
+        signUpButton.startAnimation()
         FirebaseAuthService.manager.createNewUser(email: email.lowercased(), password: password) { [weak self] (result) in
             self?.handleCreateAccountResponse(with: result)
         }
@@ -265,7 +291,10 @@ class LoginViewController: UIViewController {
     private func handleLoginResponse(with result: Result<User, Error>) {
         switch result {
         case .failure(let error):
-            showAlert(with: "Error", and: "Could not log in. Error: \(error)")
+            loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.3) {
+                self.showAlert(with: "Error", and: "Could not log in. Error: \(error)")
+            }
+            
         case .success:
                         guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                             let sceneDelegate = windowScene.delegate as? SceneDelegate
@@ -273,9 +302,10 @@ class LoginViewController: UIViewController {
                                 return
                         }
             print("login successful")
-                        UIView.transition(with: self.view, duration: 0.1, options: .transitionFlipFromBottom, animations: {
-                            sceneDelegate.window?.rootViewController = MainTabViewController()
-                        }, completion: nil)
+                        loginButton.stopAnimation(animationStyle: .expand, revertAfterDelay: 0.3) {
+                                sceneDelegate.window?.rootViewController = MainTabViewController()
+
+                        }
         }
     }
     
@@ -291,6 +321,7 @@ class LoginViewController: UIViewController {
                 }
             case .failure(let error):
                 self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
+                
             }
         }
     }
@@ -306,11 +337,15 @@ class LoginViewController: UIViewController {
             }
             print("sign up successful!")
             
-                        UIView.transition(with: self.view, duration: 0.1, options: .transitionFlipFromBottom, animations: {
-                            sceneDelegate.window?.rootViewController = MainTabViewController()
-                    }, completion: nil)
+                    signUpButton.stopAnimation(animationStyle: .expand, revertAfterDelay: 0.3) {
+                                sceneDelegate.window?.rootViewController = MainTabViewController()
+
+                        }
         case .failure(let error):
-            self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
+            loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.3) {
+               self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
+            }
+            
         }
     }
     

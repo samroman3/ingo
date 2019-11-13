@@ -89,10 +89,12 @@ PODS:
   - nanopb/decode (0.3.9011)
   - nanopb/encode (0.3.9011)
   - Protobuf (3.10.0)
+  - TransitionButton (0.5.2)
 
 DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Firestore
+  - TransitionButton
 
 SPEC REPOS:
   trunk:
@@ -113,6 +115,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - Protobuf
+    - TransitionButton
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
@@ -132,7 +135,8 @@ SPEC CHECKSUMS:
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   nanopb: 18003b5e52dab79db540fe93fe9579f399bd1ccd
   Protobuf: a4dc852ad69c027ca2166ed287b856697814375b
+  TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 7f877ca64a3d3c659b8c24ea5a133dd760d579f2
+PODFILE CHECKSUM: c598b1e396d0bce04efdbe8d8480cb01cc89f5d3
 
 COCOAPODS: 1.8.4
