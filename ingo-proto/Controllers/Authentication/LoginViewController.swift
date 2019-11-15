@@ -299,7 +299,9 @@ class LoginViewController: UIViewController {
     
     
     @objc func tryLogin() {
+       
         guard let email = emailTextField.text, let password = passwordTextField.text else {
+             clearAllFields()
             loginButton.startAnimation()
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please fill out all fields.", image: nil)
@@ -308,14 +310,17 @@ class LoginViewController: UIViewController {
         }
         
         guard email.isValidEmail else {
+            clearAllFields()
             loginButton.startAnimation()
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid email", image: nil)
             }
+
             return
         }
         
         guard password.isValidPassword else {
+            clearAllFields()
             loginButton.startAnimation()
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid password. Passwords must have at least 8 characters.", image: nil)
@@ -330,36 +335,40 @@ class LoginViewController: UIViewController {
     }
     
     @objc func trySignUp() {
+        
         guard let email = emailTextField.text, let password = passwordTextField.text else {
+            clearAllFields()
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please fill out all fields.", image: nil)        }
-            
             return
         }
         
         guard email.isValidEmail else {
+            clearAllFields()
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid email", image: nil)         }
-           
             return
         }
         
         guard password.isValidPassword else {
+            clearAllFields()
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid password. Passwords must have at least 8 characters.", image: nil)           }
-            
+
             return
         }
         
         guard userNameTextField.hasText else {
+            clearAllFields()
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid user name.", image: nil)
             }
             
+
             return
         }
         signUpButton.startAnimation()
@@ -377,6 +386,12 @@ class LoginViewController: UIViewController {
         present(alertVC, animated: true, completion: nil)
     }
     
+    
+    private func clearAllFields(){
+        userNameTextField.text = ""
+        emailTextField.text = ""
+        passwordTextField.text = ""
+    }
     
     
     
