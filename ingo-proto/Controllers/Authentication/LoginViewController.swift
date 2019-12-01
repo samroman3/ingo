@@ -397,7 +397,7 @@ class LoginViewController: UIViewController {
     
     
     //MARK: Firebase Authentication Methods
-    private func handleLoginResponse(with result: Result<User, Error>) {
+    private func handleLoginResponse(with result: Result<(), Error>) {
         switch result {
         case .failure(let error):
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.3) {
@@ -420,21 +420,20 @@ class LoginViewController: UIViewController {
     
     private func handleCreateAccountResponse(with result: Result<User, Error>) {
         DispatchQueue.main.async {
-            switch result {
-            case .success(let user):
-                //MARK: TODO: move this logic to the server
-                FirestoreService.manager.createAppUser(user: AppUser(from: user)) { [weak self] newResult in
-                    FirebaseAuthService.manager.updateUserNameField(username: self?.userNameTextField.text ?? "") { (result) in
-                        self?.handleCreatedUserInFirestore(result: result)
-                    }
-                }
-            case .failure(let error):
-                self.signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.3) {
-                    self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
-                }
-                
-            }
+            
+            DispatchQueue.main.async { [weak self] in
+                          switch result {
+                          case .success(let user):
+                              FirestoreService.manager.createAppUser(user: AppUser(from: user)) { [weak self] newResult in
+                                  self?.handleCreatedUserInFirestore(result: newResult)
+                              }
+                          case .failure(let error):
+                            self?.signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.3) {
+                                self?.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")
+                                             }
+                      }
         }
+    }
     }
     
     private func handleCreatedUserInFirestore(result: Result<Void, Error>) {

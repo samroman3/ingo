@@ -8,6 +8,7 @@ target 'ingo-proto' do
   # Pods for ingo-proto
 	pod 'Firebase/Auth'
 	pod 'Firebase/Firestore'
+	pod 'Firebase/Storage'
         pod 'TransitionButton'
 	pod 'SwiftEntryKit', '1.2.3'
   target 'ingo-protoTests' do
