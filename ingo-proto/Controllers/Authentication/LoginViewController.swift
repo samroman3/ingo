@@ -30,6 +30,7 @@ class LoginViewController: UIViewController {
         return label
     }()
     
+    //MARK: UI TextFields
     lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = " Enter Email..."
@@ -55,7 +56,7 @@ class LoginViewController: UIViewController {
         textField.borderStyle = .roundedRect
         textField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
         return textField
-    }()
+    }() 
     
     lazy var userNameTextField: UITextField = {
         let textField = UITextField()
@@ -97,6 +98,7 @@ class LoginViewController: UIViewController {
         return icon
     }()
     
+    //MARK: UI Buttons
     lazy var loginButton: TransitionButton = {
         let button = TransitionButton()
         button.setTitle("Login", for: .normal)
@@ -141,7 +143,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     
-    //MARK: SwiftEntryKit Methods
+    //MARK: Alert Methods
     
     private func showFloatCellAlert(with attributes: EKAttributes, title: String, description: String, image: String?) {
         let title = title
@@ -205,6 +207,13 @@ class LoginViewController: UIViewController {
         gradientLayer.frame = newView.bounds
         newView.layer.insertSublayer(gradientLayer, at: 0)
     }
+    
+    private func showAlert(with title: String, and message: String) {
+           let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
+           alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+           present(alertVC, animated: true, completion: nil)
+       }
+    
     //MARK: Lifecycle methods
     
     override func viewDidLoad() {
@@ -308,7 +317,6 @@ class LoginViewController: UIViewController {
             }
             return
         }
-        
         guard email.isValidEmail else {
             clearAllFields()
             loginButton.startAnimation()
@@ -318,7 +326,6 @@ class LoginViewController: UIViewController {
 
             return
         }
-        
         guard password.isValidPassword else {
             clearAllFields()
             loginButton.startAnimation()
@@ -327,7 +334,6 @@ class LoginViewController: UIViewController {
             }
             return
         }
-        
         loginButton.startAnimation()
         FirebaseAuthService.manager.loginUser(email: email.lowercased(), password: password) { (result) in
             self.handleLoginResponse(with: result)
@@ -380,12 +386,6 @@ class LoginViewController: UIViewController {
     
     //MARK: Private methods
     
-    private func showAlert(with title: String, and message: String) {
-        let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alertVC.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-        present(alertVC, animated: true, completion: nil)
-    }
-    
     
     private func clearAllFields(){
         userNameTextField.text = ""
@@ -396,7 +396,7 @@ class LoginViewController: UIViewController {
     
     
     
-    //MARK: Firebase Methods
+    //MARK: Firebase Authentication Methods
     private func handleLoginResponse(with result: Result<User, Error>) {
         switch result {
         case .failure(let error):
@@ -460,7 +460,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    //MARK: UI Setup
+    //MARK: UI Setup & Constraints
     
     private func setupSubViews() {
         setupLogoLabel()
