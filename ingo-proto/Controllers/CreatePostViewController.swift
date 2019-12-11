@@ -15,7 +15,7 @@ class CreatePostViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        view.backgroundColor = .init(white: 1.0, alpha: 1)
+        view.backgroundColor = .init(white: 0.2, alpha: 1)
         setUpVC()
         super.viewDidLoad()
         
@@ -43,24 +43,43 @@ class CreatePostViewController: UIViewController {
     
     lazy var createButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Create", for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemIndigo
+        button.setTitle("Post", for: .normal)
+        button.setTitleColor(.lightGray, for: .normal)
+        button.titleLabel?.font = button.titleLabel?.font.withSize(18)
+        button.isEnabled = false
+        button.backgroundColor = .clear
         button.layer.cornerRadius = 10
         button.showsTouchWhenHighlighted = true
         button.addTarget(self, action: #selector(createPostPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
+    lazy var exitButton: UIButton = {
+       let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "xmark"), for: .normal)
+        button.tintColor = .white
+        button.showsTouchWhenHighlighted = true
+        button.addTarget(self, action: #selector(exitButtonPressed(sender:)), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc func exitButtonPressed(sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @objc func createPostPressed(sender: UIButton) {
         guard bodyTextView.text != nil, bodyTextView.text != "" else { return }
-        let newPost = Post(title: titleTextView.text ?? "", body: bodyTextView.text ?? "", creatorID: FirebaseAuthService.manager.currentUser?.uid ?? "", text: nil, image: nil, lat: currentLocation.coordinate.latitude, long: currentLocation.coordinate.longitude)
+        var title = ""
+        if titleTextView.text != nil, titleTextView.text != "Title..." {
+            title = titleTextView.text
+        }
+        let newPost = Post(title: title, body: bodyTextView.text ?? "", creatorID: FirebaseAuthService.manager.currentUser?.uid ?? "", text: nil, image: nil, lat: currentLocation.coordinate.latitude, long: currentLocation.coordinate.longitude)
         FirestoreService.manager.createPost(post: newPost) { (result) in
             switch result {
             case .failure(let error):
                 print(error)
             case .success():
                 print("created post")
+                self.dismiss(animated: true, completion: nil)
             }
         }
         
@@ -72,13 +91,14 @@ class CreatePostViewController: UIViewController {
         constrainCreateButton()
         constraintTitle()
         constrainBody()
+        constrainExitButton()
     }
     
     private func constraintTitle() {
         view.addSubview(titleTextView)
         titleTextView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleTextView.topAnchor.constraint(equalTo: createButton.bottomAnchor),
+            titleTextView.topAnchor.constraint(equalTo: createButton.bottomAnchor, constant: 5),
             titleTextView.widthAnchor.constraint(equalToConstant: view.frame.width),
             titleTextView.heightAnchor.constraint(equalToConstant: 70)])
     }
@@ -87,7 +107,7 @@ class CreatePostViewController: UIViewController {
            view.addSubview(bodyTextView)
            bodyTextView.translatesAutoresizingMaskIntoConstraints = false
            NSLayoutConstraint.activate([
-               bodyTextView.topAnchor.constraint(equalTo: titleTextView.bottomAnchor),
+            bodyTextView.topAnchor.constraint(equalTo: titleTextView.bottomAnchor, constant: 1),
                bodyTextView.widthAnchor.constraint(equalToConstant: view.frame.width),
                bodyTextView.heightAnchor.constraint(equalToConstant: view.frame.height / 3)])
        }
@@ -97,9 +117,20 @@ class CreatePostViewController: UIViewController {
         createButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             createButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            createButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 5),
+            createButton.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             createButton.heightAnchor.constraint(equalToConstant: 45),
-            createButton.widthAnchor.constraint(equalToConstant: 100)])
+            createButton.widthAnchor.constraint(equalToConstant: 50)])
+    }
+    
+    private func constrainExitButton(){
+        view.addSubview(exitButton)
+        exitButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            exitButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 5),
+            exitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            exitButton.bottomAnchor.constraint(equalTo: createButton.bottomAnchor),
+            exitButton.heightAnchor.constraint(equalToConstant: 25),
+            exitButton.widthAnchor.constraint(equalToConstant: 25)])
     }
        
     
@@ -122,5 +153,14 @@ extension CreatePostViewController: UITextViewDelegate {
         default:
             break
         }
+    }
+    
+    func textViewDidChangeSelection(_ textView: UITextView) {
+        guard bodyTextView.text != nil, bodyTextView.text != "" else {
+        createButton.titleLabel?.textColor = .lightGray
+        createButton.isEnabled = false
+            return }
+        createButton.titleLabel?.textColor = .white
+        createButton.isEnabled = true
     }
 }

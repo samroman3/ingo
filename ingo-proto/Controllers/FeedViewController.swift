@@ -21,21 +21,26 @@ class FeedViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+    }
+    
     var currentLocation = CLLocationCoordinate2D.init(latitude: 40.6782, longitude: -73.9442) 
 
     private let locationManager = CLLocationManager()
 
     lazy var feedTableView: UITableView = {
           let tv = UITableView()
-        tv.backgroundColor = .init(white: 0.8, alpha: 1)
+          tv.backgroundColor = .init(white: 0.8, alpha: 1)
           return tv
       }()
     
     lazy var menuButton: CircleMenu = {
         let menu = CircleMenu(frame: CGRect(x: 200, y: 200, width: 50, height: 50), normalIcon: "cross", selectedIcon: "list" )
+        
         menu.buttonsCount = 2
         menu.setBackgroundImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
-        menu.setBackgroundImage(UIImage(systemName: "xmark"), for: .selected)
+//        menu.setBackgroundImage(UIImage(systemName: "xmark"), for: .selected)
         menu.tintColor = .white
         menu.duration = 0.4
         menu.distance = 120
