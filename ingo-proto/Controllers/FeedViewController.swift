@@ -13,7 +13,7 @@ import CircleMenu
 class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
-        view.backgroundColor = .systemTeal
+        view.backgroundColor = .black
         setUpVC()
         locationAuthorization()
         super.viewDidLoad()
@@ -25,13 +25,19 @@ class FeedViewController: UIViewController {
         super.viewWillAppear(true)
     }
     
+    override func viewWillLayoutSubviews() {
+        menuButton.layer.cornerRadius = (menuButton.frame.size.width) / 2
+        menuButton.clipsToBounds = true
+
+    }
+    
     var currentLocation = CLLocationCoordinate2D.init(latitude: 40.6782, longitude: -73.9442) 
 
     private let locationManager = CLLocationManager()
 
     lazy var feedTableView: UITableView = {
           let tv = UITableView()
-          tv.backgroundColor = .init(white: 0.8, alpha: 1)
+          tv.backgroundColor = .init(white: 1, alpha: 1)
           return tv
       }()
     
@@ -39,7 +45,7 @@ class FeedViewController: UIViewController {
         let menu = CircleMenu(frame: CGRect(x: 200, y: 200, width: 50, height: 50), normalIcon: "cross", selectedIcon: "list" )
         
         menu.buttonsCount = 2
-        menu.setBackgroundImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
+        menu.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
 //        menu.setBackgroundImage(UIImage(systemName: "xmark"), for: .selected)
         menu.tintColor = .white
         menu.duration = 0.4
@@ -47,7 +53,6 @@ class FeedViewController: UIViewController {
         menu.backgroundColor = .systemIndigo
         menu.delegate = self
         menu.showsTouchWhenHighlighted = true
-        menu.layer.cornerRadius = 10
         return menu
     }()
       
@@ -70,7 +75,7 @@ class FeedViewController: UIViewController {
         menuButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             menuButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            menuButton.heightAnchor.constraint(equalToConstant: 50),
+            menuButton.heightAnchor.constraint(equalToConstant: 55),
             menuButton.widthAnchor.constraint(equalToConstant: 50)])
         menuButtonBottom.isActive = true
     }
@@ -148,6 +153,7 @@ extension FeedViewController: CircleMenuDelegate {
                 self.menuButtonBottom.constant = -self.view.frame.height / 2
                 self.view.layoutIfNeeded()
             }, completion: nil)
+        
         }
     
     func menuCollapsed(_ circleMenu: CircleMenu) {
@@ -167,7 +173,21 @@ extension FeedViewController: CircleMenuDelegate {
         case 0:
             let createVC = CreatePostViewController()
             createVC.modalPresentationStyle = .overCurrentContext
+            createVC.currentLocation = self.currentLocation
             present(createVC, animated: true)
+        case 1:
+            return
+        default:
+            break
+        }
+    }
+    
+    func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
+        switch atIndex {
+        case 0:
+            button.backgroundColor = .systemGreen
+            button.setImage(UIImage(systemName: "textformat.alt"), for: .normal)
+            button.tintColor = .white
         case 1:
             return
         default:

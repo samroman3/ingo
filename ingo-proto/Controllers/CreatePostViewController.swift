@@ -11,7 +11,7 @@ import CoreLocation
 
 class CreatePostViewController: UIViewController {
     
-    private let currentLocation = CLLocation()
+    var currentLocation = CLLocationCoordinate2D()
     
     
     override func viewDidLoad() {
@@ -72,7 +72,7 @@ class CreatePostViewController: UIViewController {
         if titleTextView.text != nil, titleTextView.text != "Title..." {
             title = titleTextView.text
         }
-        let newPost = Post(title: title, body: bodyTextView.text ?? "", creatorID: FirebaseAuthService.manager.currentUser?.uid ?? "", text: nil, image: nil, lat: currentLocation.coordinate.latitude, long: currentLocation.coordinate.longitude)
+        let newPost = Post(title: title, body: bodyTextView.text ?? "", creatorID: FirebaseAuthService.manager.currentUser?.uid ?? "", text: nil, image: nil, lat: currentLocation.latitude, long: currentLocation.longitude)
         FirestoreService.manager.createPost(post: newPost) { (result) in
             switch result {
             case .failure(let error):
@@ -130,7 +130,7 @@ class CreatePostViewController: UIViewController {
             exitButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             exitButton.bottomAnchor.constraint(equalTo: createButton.bottomAnchor),
             exitButton.heightAnchor.constraint(equalToConstant: 25),
-            exitButton.widthAnchor.constraint(equalToConstant: 25)])
+            exitButton.widthAnchor.constraint(equalToConstant: 20)])
     }
        
     
