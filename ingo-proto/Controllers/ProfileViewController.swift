@@ -18,7 +18,7 @@ class ProfileViewController: UIViewController {
     lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
         sv.isScrollEnabled = true
-        sv.backgroundColor = .white
+        sv.backgroundColor = .gray
         sv.showsVerticalScrollIndicator = true
         sv.decelerationRate = .fast
         return sv
