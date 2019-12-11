@@ -21,20 +21,19 @@ class ProfileViewController: UIViewController {
         sv.backgroundColor = .white
         sv.showsVerticalScrollIndicator = true
         sv.decelerationRate = .fast
-        
         return sv
     }()
     
     
     
     
-    lazy var otherView: UIView = {
-        let ov = UIView()
-        ov.backgroundColor = .blue
-        return ov
+    lazy var profileTableView: UITableView = {
+        let tv = UITableView()
+        tv.backgroundColor = .blue
+        return tv
     }()
     
-    
+
     
     
     func constrainScrollView(){
@@ -46,18 +45,20 @@ class ProfileViewController: UIViewController {
     }
     
     
-//    func constrainOtherView() {
-//        otherView.translatesAutoresizingMaskIntoConstraints = false
-//        otherView.heightAnchor.constraint(equalToConstant: 100).isActive = true
-//        otherView.widthAnchor.constraint(equalToConstant: 100).isActive = true
+    func constrainOtherView() {
+        profileTableView.translatesAutoresizingMaskIntoConstraints = false
+        profileTableView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
+        profileTableView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
 //        otherView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: 0).isActive = true
-//        otherView.centerYAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: 900).isActive = true
-//    }
+        profileTableView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: 150).isActive = true
+    }
     
 
     override func viewDidLoad() {
         view.addSubview(scrollView)
-//        scrollView.addSubview(otherView)
+        scrollView.addSubview(profileTableView)
+        profileTableView.delegate = self
+        profileTableView.dataSource = self
         super.viewDidLoad()
         
        }
@@ -65,8 +66,25 @@ class ProfileViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         constrainScrollView()
-//        constrainOtherView()
-        self.scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + 500 )
+        constrainOtherView()
+        self.scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + profileTableView.frame.width )
     }
 
+}
+
+
+extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 20
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
 }
