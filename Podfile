@@ -11,6 +11,7 @@ target 'ingo-proto' do
 	pod 'Firebase/Storage'
         pod 'TransitionButton'
 	pod 'SwiftEntryKit', '1.2.3'
+	pod 'CircleMenu'
   target 'ingo-protoTests' do
     inherit! :search_paths
     # Pods for testing

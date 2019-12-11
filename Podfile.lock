@@ -5,6 +5,7 @@ PODS:
   - BoringSSL-GRPC/Implementation (0.0.3):
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
+  - CircleMenu (4.1.0)
   - Firebase/Auth (6.12.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.3.1)
@@ -102,6 +103,7 @@ PODS:
   - TransitionButton (0.5.2)
 
 DEPENDENCIES:
+  - CircleMenu
   - Firebase/Auth
   - Firebase/Firestore
   - Firebase/Storage
@@ -111,6 +113,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - BoringSSL-GRPC
+    - CircleMenu
     - Firebase
     - FirebaseAuth
     - FirebaseAuthInterop
@@ -134,6 +137,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BoringSSL-GRPC: db8764df3204ccea016e1c8dd15d9a9ad63ff318
+  CircleMenu: a66095199a5e26f19acbb212f077010257767fe5
   Firebase: da031bc7012374e3bed17a6731b89327b29863b9
   FirebaseAuth: b401a012cc33b04df3b52bb308b04e8766f2693e
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
@@ -155,6 +159,6 @@ SPEC CHECKSUMS:
   SwiftEntryKit: 340713c2e4a6662c5149629990bf1088bf5f0389
   TransitionButton: fb271583d9c9e4bb116b97103047e5157653f233
 
-PODFILE CHECKSUM: 59a21ba1022db50fd517115f5a150b985ea57d34
+PODFILE CHECKSUM: 6af004a8ba275745a68ea5f5d4a53b8cf17f5728
 
 COCOAPODS: 1.8.4
