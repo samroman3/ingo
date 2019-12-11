@@ -27,6 +27,7 @@
 		3A9ED6CC237B42CF00D64483 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */; };
 		3A9ED6CE237B446600D64483 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CD237B446600D64483 /* LoginViewController.swift */; };
 		3AF019D423A15B890030C8CD /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019D323A15B890030C8CD /* CreatePostViewController.swift */; };
+		3AF019D723A199F20030C8CD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019D623A199F20030C8CD /* PostTableViewCell.swift */; };
 		3AF3630E2394760B006717C0 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3630D2394760B006717C0 /* Vote.swift */; };
 		3AF36310239478B9006717C0 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3630F239478B9006717C0 /* FirebaseStorageService.swift */; };
 		3AF3631223947ADB006717C0 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3631123947ADB006717C0 /* ProfileEditViewController.swift */; };
@@ -78,6 +79,7 @@
 		3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		3A9ED6CD237B446600D64483 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3AF019D323A15B890030C8CD /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		3AF019D623A199F20030C8CD /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		3AF3630D2394760B006717C0 /* Vote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		3AF3630F239478B9006717C0 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		3AF3631123947ADB006717C0 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 				3AF019D323A15B890030C8CD /* CreatePostViewController.swift */,
 				3A3773D1237C54110034EA59 /* FeedViewController.swift */,
 				3AF3631123947ADB006717C0 /* ProfileEditViewController.swift */,
+				3AF019D523A199D40030C8CD /* Views */,
 				3A9ED6BB237B418F00D64483 /* Authentication */,
 			);
 			path = Controllers;
@@ -264,6 +267,14 @@
 				3A9ED6C1237B425300D64483 /* String+Validations.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		3AF019D523A199D40030C8CD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3AF019D623A199F20030C8CD /* PostTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -508,6 +519,7 @@
 			files = (
 				3A9ED6C6237B429000D64483 /* Comment.swift in Sources */,
 				3AF3631223947ADB006717C0 /* ProfileEditViewController.swift in Sources */,
+				3AF019D723A199F20030C8CD /* PostTableViewCell.swift in Sources */,
 				3AF019D423A15B890030C8CD /* CreatePostViewController.swift in Sources */,
 				3A9ED6C4237B427E00D64483 /* AppUser.swift in Sources */,
 				3AF3630E2394760B006717C0 /* Vote.swift in Sources */,

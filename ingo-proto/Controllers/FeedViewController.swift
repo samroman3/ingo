@@ -13,7 +13,7 @@ import CircleMenu
 class FeedViewController: UIViewController {
 
     override func viewDidLoad() {
-        view.backgroundColor = .black
+        view.backgroundColor = .white
         setUpVC()
         locationAuthorization()
         super.viewDidLoad()
