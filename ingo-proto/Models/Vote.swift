@@ -12,15 +12,17 @@
 import Foundation
 
 struct Vote: Codable {
+    var postID: String
     var likes: Int?
     var dislikes: Int?
     
     
     
     
-    init(likes: Int?, dislikes: Int?) {
+    init(likes: Int?, dislikes: Int?, postID: String) {
         self.likes = likes
         self.dislikes = dislikes
+        self.postID = postID
     }
     
 }
