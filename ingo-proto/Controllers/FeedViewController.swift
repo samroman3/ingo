@@ -15,6 +15,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         view.backgroundColor = .systemTeal
         setUpVC()
+        locationAuthorization()
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
@@ -31,11 +32,17 @@ class FeedViewController: UIViewController {
       }()
     
     lazy var menuButton: CircleMenu = {
-        let menu = CircleMenu(frame: CGRect(x: 200, y: 200, width: 50, height: 50), normalIcon: "icon_menu", selectedIcon: "icon_close")
-        menu.buttonsCount = 4
+        let menu = CircleMenu(frame: CGRect(x: 200, y: 200, width: 50, height: 50), normalIcon: "cross", selectedIcon: "list" )
+        menu.buttonsCount = 2
+        menu.setBackgroundImage(UIImage(systemName: "square.and.arrow.down"), for: .normal)
+        menu.setBackgroundImage(UIImage(systemName: "xmark"), for: .selected)
+        menu.tintColor = .white
         menu.duration = 0.4
         menu.distance = 120
-        menu.backgroundColor = .green
+        menu.backgroundColor = .systemIndigo
+        menu.delegate = self
+        menu.showsTouchWhenHighlighted = true
+        menu.layer.cornerRadius = 10
         return menu
     }()
       
@@ -57,16 +64,21 @@ class FeedViewController: UIViewController {
         view.addSubview(menuButton)
         menuButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            menuButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             menuButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             menuButton.heightAnchor.constraint(equalToConstant: 50),
             menuButton.widthAnchor.constraint(equalToConstant: 50)])
+        menuButtonBottom.isActive = true
     }
+    
+    lazy var menuButtonBottom: NSLayoutConstraint = {
+        self.menuButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+    }()
+    
 
     
     private func setUpVC(){
-//        constrainFeedTableView()
-constrainMenu()
+        constrainFeedTableView()
+        constrainMenu()
         locationManager.delegate = self
     }
     
@@ -123,3 +135,41 @@ extension FeedViewController: CLLocationManagerDelegate {
         }
     }
 }
+
+extension FeedViewController: CircleMenuDelegate {
+    
+    func menuOpened(_ circleMenu: CircleMenu) {
+        UIImageView.animate(withDuration: 0.3, animations: {
+                self.menuButtonBottom.constant = -self.view.frame.height / 2
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+        }
+    
+    func menuCollapsed(_ circleMenu: CircleMenu) {
+        UIImageView.animate(withDuration: 0.3, animations: {
+            self.menuButtonBottom.constant = 0
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
+    
+    func circleMenu(_ circleMenu: CircleMenu, buttonDidSelected button: UIButton, atIndex: Int) {
+        UIImageView.animate(withDuration: 0.5, animations: {
+            self.menuButtonBottom.constant = 0
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+        
+        switch atIndex {
+        case 0:
+            let createVC = CreatePostViewController()
+            createVC.modalPresentationStyle = .overCurrentContext
+            present(createVC, animated: true)
+        case 1:
+            return
+        default:
+            break
+        }
+    }
+    
+    }
+    
+
