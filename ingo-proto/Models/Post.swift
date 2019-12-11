@@ -9,7 +9,7 @@
 import Foundation
 
 struct Post {
-    let title: String
+    let title: String?
     let body: String
     let id: String
     let creatorID: String

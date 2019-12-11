@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CreatePostViewController: UIViewController {
-
+    
+    private let currentLocation = CLLocation()
+    
+    
     override func viewDidLoad() {
         view.backgroundColor = .init(white: 1.0, alpha: 1)
         setUpVC()
@@ -44,12 +48,22 @@ class CreatePostViewController: UIViewController {
         button.backgroundColor = .systemIndigo
         button.layer.cornerRadius = 10
         button.showsTouchWhenHighlighted = true
-        
+        button.addTarget(self, action: #selector(createPostPressed(sender:)), for: .touchUpInside)
         return button
     }()
     
     @objc func createPostPressed(sender: UIButton) {
         guard bodyTextView.text != nil, bodyTextView.text != "" else { return }
+        let newPost = Post(title: titleTextView.text ?? "", body: bodyTextView.text ?? "", creatorID: FirebaseAuthService.manager.currentUser?.uid ?? "", text: nil, image: nil, lat: currentLocation.coordinate.latitude, long: currentLocation.coordinate.longitude)
+        FirestoreService.manager.createPost(post: newPost) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success():
+                print("created post")
+            }
+        }
+        
         
     }
     

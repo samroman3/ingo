@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
         if FirebaseAuthService.manager.currentUser != nil {
-            window?.rootViewController = CreatePostViewController()
+            window?.rootViewController = MainTabViewController()
         } else {
         window?.rootViewController = LoginViewController()
         

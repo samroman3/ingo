@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class FeedViewController: UIViewController {
 
@@ -18,6 +19,10 @@ class FeedViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    var currentLocation = CLLocationCoordinate2D.init(latitude: 40.6782, longitude: -73.9442) 
+
+    private let locationManager = CLLocationManager()
+
     lazy var feedTableView: UITableView = {
           let tv = UITableView()
         tv.backgroundColor = .init(white: 0.8, alpha: 1)
@@ -41,7 +46,21 @@ class FeedViewController: UIViewController {
     
     private func setUpVC(){
         constrainFeedTableView()
+        locationManager.delegate = self
     }
+    
+    private func locationAuthorization(){
+           let status = CLLocationManager.authorizationStatus()
+           
+           switch status {
+           case .authorizedAlways, .authorizedWhenInUse:
+               locationManager.requestLocation()
+               locationManager.startUpdatingLocation()
+               locationManager.desiredAccuracy = kCLLocationAccuracyBest
+           default:
+               locationManager.requestWhenInUseAuthorization()
+           }
+       }
 }
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
@@ -57,4 +76,29 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         return 150
     }
     
+}
+
+
+extension FeedViewController: CLLocationManagerDelegate {
+    
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print("new locations \(locations)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("an error occurred: \(error)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        print("Authorization status changed to \(status.rawValue)")
+        switch status {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.requestLocation()
+        //call a function to get current location
+        default:
+            break
+        }
+    }
 }
