@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import CircleMenu
 
 class FeedViewController: UIViewController {
 
@@ -28,6 +29,15 @@ class FeedViewController: UIViewController {
         tv.backgroundColor = .init(white: 0.8, alpha: 1)
           return tv
       }()
+    
+    lazy var menuButton: CircleMenu = {
+        let menu = CircleMenu(frame: CGRect(x: 200, y: 200, width: 50, height: 50), normalIcon: "icon_menu", selectedIcon: "icon_close")
+        menu.buttonsCount = 4
+        menu.duration = 0.4
+        menu.distance = 120
+        menu.backgroundColor = .green
+        return menu
+    }()
       
 
     
@@ -42,10 +52,21 @@ class FeedViewController: UIViewController {
         ])
        
     }
+    
+    private func constrainMenu(){
+        view.addSubview(menuButton)
+        menuButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            menuButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            menuButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            menuButton.heightAnchor.constraint(equalToConstant: 50),
+            menuButton.widthAnchor.constraint(equalToConstant: 50)])
+    }
 
     
     private func setUpVC(){
-        constrainFeedTableView()
+//        constrainFeedTableView()
+constrainMenu()
         locationManager.delegate = self
     }
     
