@@ -128,6 +128,7 @@ extension FeedViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print("new locations \(locations)")
+        self.currentLocation = locations[0].coordinate
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
