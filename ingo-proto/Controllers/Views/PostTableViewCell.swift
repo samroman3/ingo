@@ -10,12 +10,13 @@ import UIKit
 
 class PostTableViewCell: UITableViewCell {
     
-    lazy var titleLabel: UILabel = {
+    lazy var usernameLabel: UILabel = {
          let label = UILabel()
            label.textAlignment = .left
            label.textColor = .black
            label.numberOfLines = 2
-           label.text = "Testing Title Label"
+           label.text = "usernameLabel"
+        label.font = label.font.withSize(13)
            return label
        }()
 
@@ -25,33 +26,43 @@ class PostTableViewCell: UITableViewCell {
            label.textColor = .black
            label.numberOfLines = 0
            label.text = "Testing Body Label"
+         label.font = label.font.withSize(14)
 
            return label
        }()
        
+
+     lazy var profileImage: UIImageView = {
+           let image = UIImageView()
+           image.backgroundColor = .lightGray
+           image.image = UIImage(systemName: "person")
+           image.tintColor = .white
+           return image
+       }()
     
     private func setUpCell(){
-       constrainTitleLabel()
+       constrainUserLabel()
        constrainBodyLabel()
+        
     }
     
-    
-    private func constrainTitleLabel(){
-        contentView.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+   
+    private func constrainUserLabel(){
+        contentView.addSubview(usernameLabel)
+        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
-            titleLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            titleLabel.heightAnchor.constraint(equalToConstant: 40)])
+            usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
+            usernameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            usernameLabel.heightAnchor.constraint(equalToConstant: 20)])
     }
     
     private func constrainBodyLabel(){
         contentView.addSubview(bodyLabel)
         bodyLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bodyLabel.topAnchor.constraint(equalTo: titleLabel.topAnchor, constant: 2),
-            bodyLabel.widthAnchor.constraint(equalTo: contentView.widthAnchor),
-            bodyLabel.heightAnchor.constraint(equalToConstant: bodyLabel.frame.height)])
+            bodyLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 10),
+            bodyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            bodyLabel.heightAnchor.constraint(equalToConstant: 20)])
     }
 
     override func awakeFromNib() {

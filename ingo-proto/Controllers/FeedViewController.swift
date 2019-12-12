@@ -69,6 +69,8 @@ class FeedViewController: UIViewController {
         let tv = UITableView()
         tv.backgroundColor = .init(white: 1, alpha: 1)
         tv.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
+        tv.delegate = self
+        tv.dataSource = self
         return tv
     }()
     
@@ -132,17 +134,23 @@ class FeedViewController: UIViewController {
     //MARK: TableView Extension
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as? PostTableViewCell else { return UITableViewCell() }
+        
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 100
     }
     
+//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 10
+//    }
 }
 
     //MARK: LocationManager Delegate
