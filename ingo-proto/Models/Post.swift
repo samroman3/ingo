@@ -17,9 +17,10 @@ struct Post {
     let image: Data?
     let lat: Double
     let long: Double
+    let neighborhood: String
     
     
-    init(title: String, body: String, creatorID: String, text: String?, image: Data?, lat: Double, long: Double) {
+    init(title: String, body: String, creatorID: String, text: String?, image: Data?, lat: Double, long: Double, neighborhood: String) {
         self.title = title
         self.body = body
         self.creatorID = creatorID
@@ -28,6 +29,7 @@ struct Post {
         self.image = image
         self.lat = lat
         self.long = long
+        self.neighborhood = neighborhood
         
     }
     
@@ -38,7 +40,8 @@ struct Post {
             let text = dict["text"] as? String,
             let image = dict["image"] as? Data,
         let lat = dict["lat"] as? Double,
-        let long = dict["long"] as? Double else {
+        let long = dict["long"] as? Double ,
+        let neighborhood = dict["neighborhood"] as? String else {
                 return nil
         }
         self.title = title
@@ -49,6 +52,7 @@ struct Post {
         self.image = image
         self.lat = lat
         self.long = long
+        self.neighborhood = neighborhood
 
     }
     
@@ -60,7 +64,8 @@ struct Post {
             "text": self.text,
             "image": self.image,
             "lat": self.lat,
-            "long": self.long
+            "long": self.long,
+            "neighborhood": self.neighborhood
         ]
     }
 }

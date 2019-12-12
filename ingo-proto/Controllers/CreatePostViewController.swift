@@ -66,13 +66,19 @@ class CreatePostViewController: UIViewController {
     @objc func exitButtonPressed(sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    
     @objc func createPostPressed(sender: UIButton) {
         guard bodyTextView.text != nil, bodyTextView.text != "" else { return }
+        guard let user = FirebaseAuthService.manager.currentUser else { return }
+        
         var title = ""
+        
         if titleTextView.text != nil, titleTextView.text != "Title..." {
             title = titleTextView.text
         }
-        let newPost = Post(title: title, body: bodyTextView.text ?? "", creatorID: FirebaseAuthService.manager.currentUser?.uid ?? "", text: nil, image: nil, lat: currentLocation.latitude, long: currentLocation.longitude)
+        
+        let newPost = Post(title: title, body: bodyTextView.text! , creatorID: user.uid, text: nil, image: nil, lat: currentLocation.latitude, long: currentLocation.longitude, neighborhood: "")
         FirestoreService.manager.createPost(post: newPost) { (result) in
             switch result {
             case .failure(let error):
