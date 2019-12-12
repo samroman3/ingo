@@ -405,14 +405,21 @@ class LoginViewController: UIViewController {
             }
             
         case .success:
-                        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                            let sceneDelegate = windowScene.delegate as? SceneDelegate
-                            else {
-                                return
-                        }
+                       guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                        let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
+                        else { return }
             print("login successful")
                         loginButton.stopAnimation(animationStyle: .expand, revertAfterDelay: 0.3) {
-                                sceneDelegate.window?.rootViewController = MainTabViewController()
+                    
+                               if FirebaseAuthService.manager.currentUser?.displayName != nil {
+                                  window.rootViewController = MainTabViewController()
+                                } else {
+                                    window.rootViewController = {
+                                        let profileSetupVC = ProfileEditViewController()
+                                        profileSetupVC.settingFromLogin = true
+                                        return profileSetupVC
+                                    }()
+                                }
 
                         }
         }
@@ -440,7 +447,8 @@ class LoginViewController: UIViewController {
         switch result {
         case .success:
             guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                let sceneDelegate = windowScene.delegate as? SceneDelegate
+                let sceneDelegate = windowScene.delegate as? SceneDelegate,
+                let window = sceneDelegate.window
                 else {
                     self.dismiss(animated: true, completion: nil)
                     return
@@ -448,9 +456,17 @@ class LoginViewController: UIViewController {
             print("sign up successful!")
             
                     signUpButton.stopAnimation(animationStyle: .expand, revertAfterDelay: 0.3) {
-                                sceneDelegate.window?.rootViewController = MainTabViewController()
-
-                        }
+                         if FirebaseAuthService.manager.currentUser?.displayName != nil {
+                                                         window.rootViewController = MainTabViewController()
+                                                       } else {
+                                                           window.rootViewController = {
+                                                               let profileSetupVC = ProfileEditViewController()
+                                                            profileSetupVC.userNameTextField.text = self.userNameTextField.text
+                                                            profileSetupVC.settingFromLogin = true
+                                                               return profileSetupVC
+                                                           }()
+                                                       }
+            }
         case .failure(let error):
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.3) {
                self.showAlert(with: "Error creating user", and: "An error occured while creating new account \(error)")

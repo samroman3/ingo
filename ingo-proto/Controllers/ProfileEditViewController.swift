@@ -197,6 +197,10 @@ class ProfileEditViewController: UIViewController {
     //MARK: Constraint Methods
 
     private func setupViews() {
+        if settingFromLogin == true {
+            cancelButton.isEnabled = false
+            cancelButton.isHidden = true
+        }
         setupImageView()
         setupUserNameTextField()
         setupAddImageButton()
