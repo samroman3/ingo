@@ -11,13 +11,16 @@ import CoreLocation
 import CircleMenu
 
 class FeedViewController: UIViewController {
-
+    
+    
+    //MARK: Lifecycle Methods
+    
     override func viewDidLoad() {
         view.backgroundColor = .white
         setUpVC()
         locationAuthorization()
         super.viewDidLoad()
-
+        
         // Do any additional setup after loading the view.
     }
     
@@ -28,25 +31,53 @@ class FeedViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         menuButton.layer.cornerRadius = (menuButton.frame.size.width) / 2
         menuButton.clipsToBounds = true
-
+        
     }
     
-    var currentLocation = CLLocationCoordinate2D.init(latitude: 40.6782, longitude: -73.9442) 
-
+    
+    //MARK: Private Properties
+    private var currentLocation = CLLocationCoordinate2D.init(latitude: 40.6782, longitude: -73.9442)
+    
     private let locationManager = CLLocationManager()
-
+    
+    
+    
+     //MARK: Private Methods
+    private func locationAuthorization(){
+            let status = CLLocationManager.authorizationStatus()
+            
+            switch status {
+            case .authorizedAlways, .authorizedWhenInUse:
+                locationManager.requestLocation()
+                locationManager.startUpdatingLocation()
+                locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            default:
+                locationManager.requestWhenInUseAuthorization()
+            }
+        }
+    
+    private func setUpVC(){
+        constrainFeedTableView()
+        constrainMenu()
+        locationManager.delegate = self
+    }
+    
+    
+    //MARK: UI Elements
+    
     lazy var feedTableView: UITableView = {
-          let tv = UITableView()
-          tv.backgroundColor = .init(white: 1, alpha: 1)
-          return tv
-      }()
+        let tv = UITableView()
+        tv.backgroundColor = .init(white: 1, alpha: 1)
+        tv.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
+        return tv
+    }()
     
     lazy var menuButton: CircleMenu = {
         let menu = CircleMenu(frame: CGRect(x: 200, y: 200, width: 50, height: 50), normalIcon: "cross", selectedIcon: "list" )
         
         menu.buttonsCount = 2
         menu.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
-//        menu.setBackgroundImage(UIImage(systemName: "xmark"), for: .selected)
+        //        menu.setBackgroundImage(UIImage(systemName: "xmark"), for: .selected)
         menu.tintColor = .white
         menu.duration = 0.4
         menu.distance = 120
@@ -55,19 +86,21 @@ class FeedViewController: UIViewController {
         menu.showsTouchWhenHighlighted = true
         return menu
     }()
-      
-
     
+    
+    
+    
+    //MARK: Constraint Methods
     private func constrainFeedTableView() {
         view.addSubview(feedTableView)
         feedTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        feedTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            feedTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             feedTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             feedTableView.widthAnchor.constraint(equalToConstant: view.frame.width),
             feedTableView.heightAnchor.constraint(equalToConstant: view.frame.height)
         ])
-       
+        
     }
     
     private func constrainMenu(){
@@ -84,28 +117,19 @@ class FeedViewController: UIViewController {
         self.menuButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     }()
     
-
     
-    private func setUpVC(){
-        constrainFeedTableView()
-        constrainMenu()
-        locationManager.delegate = self
-    }
     
-    private func locationAuthorization(){
-           let status = CLLocationManager.authorizationStatus()
-           
-           switch status {
-           case .authorizedAlways, .authorizedWhenInUse:
-               locationManager.requestLocation()
-               locationManager.startUpdatingLocation()
-               locationManager.desiredAccuracy = kCLLocationAccuracyBest
-           default:
-               locationManager.requestWhenInUseAuthorization()
-           }
-       }
+    
+    
+    
 }
+    
+    
+   
 
+
+
+    //MARK: TableView Extension
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -121,7 +145,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-
+    //MARK: LocationManager Delegate
 extension FeedViewController: CLLocationManagerDelegate {
     
     
@@ -147,15 +171,18 @@ extension FeedViewController: CLLocationManagerDelegate {
     }
 }
 
+
+
+    //MARK: CircleMenu Delegate
 extension FeedViewController: CircleMenuDelegate {
     
     func menuOpened(_ circleMenu: CircleMenu) {
         UIImageView.animate(withDuration: 0.3, animations: {
-                self.menuButtonBottom.constant = -self.view.frame.height / 2
-                self.view.layoutIfNeeded()
-            }, completion: nil)
+            self.menuButtonBottom.constant = -self.view.frame.height / 2
+            self.view.layoutIfNeeded()
+        }, completion: nil)
         
-        }
+    }
     
     func menuCollapsed(_ circleMenu: CircleMenu) {
         UIImageView.animate(withDuration: 0.3, animations: {
@@ -196,6 +223,6 @@ extension FeedViewController: CircleMenuDelegate {
         }
     }
     
-    }
-    
+}
+
 

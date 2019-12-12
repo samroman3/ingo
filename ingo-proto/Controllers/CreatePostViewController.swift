@@ -15,7 +15,7 @@ class CreatePostViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        view.backgroundColor = .init(white: 0.2, alpha: 1)
+        view.backgroundColor = .init(white: 1, alpha: 1)
         setUpVC()
         super.viewDidLoad()
         
@@ -44,7 +44,7 @@ class CreatePostViewController: UIViewController {
     lazy var createButton: UIButton = {
         let button = UIButton()
         button.setTitle("Post", for: .normal)
-        button.setTitleColor(.lightGray, for: .normal)
+        button.setTitleColor(.black, for: .normal)
         button.titleLabel?.font = button.titleLabel?.font.withSize(18)
         button.isEnabled = false
         button.backgroundColor = .clear
@@ -57,7 +57,7 @@ class CreatePostViewController: UIViewController {
     lazy var exitButton: UIButton = {
        let button = UIButton()
         button.setBackgroundImage(UIImage(systemName: "xmark"), for: .normal)
-        button.tintColor = .white
+        button.tintColor = .black
         button.showsTouchWhenHighlighted = true
         button.addTarget(self, action: #selector(exitButtonPressed(sender:)), for: .touchUpInside)
         return button
