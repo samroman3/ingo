@@ -21,19 +21,9 @@ class CreatePostViewController: UIViewController {
         
     }
     
-    lazy var titleTextView: UITextView = {
-    let tv = UITextView()
-        tv.text = "Title..."
-        tv.backgroundColor = .init(white: 0.8, alpha: 1)
-        tv.delegate = self
-        tv.tag = 0
-        tv.isEditable = true
-        return tv
-    }()
-    
     lazy var bodyTextView: UITextView = {
         let tv = UITextView()
-        tv.text = "Body..."
+        tv.text = "New Post..."
         tv.backgroundColor = .init(white: 0.8, alpha: 1)
         tv.delegate = self
         tv.tag = 1
@@ -71,14 +61,10 @@ class CreatePostViewController: UIViewController {
     @objc func createPostPressed(sender: UIButton) {
         guard bodyTextView.text != nil, bodyTextView.text != "" else { return }
         guard let user = FirebaseAuthService.manager.currentUser else { return }
+    
         
-        var title = ""
         
-        if titleTextView.text != nil, titleTextView.text != "Title..." {
-            title = titleTextView.text
-        }
-        
-        let newPost = Post(title: title, body: bodyTextView.text! , creatorID: user.uid, text: nil, image: nil, lat: currentLocation.latitude, long: currentLocation.longitude, neighborhood: "")
+        let newPost = Post(title: "" , body: bodyTextView.text! , creatorID: user.uid, text: nil, image: nil, lat: currentLocation.latitude, long: currentLocation.longitude, neighborhood: "neighborhood here")
         FirestoreService.manager.createPost(post: newPost) { (result) in
             switch result {
             case .failure(let error):
@@ -95,25 +81,17 @@ class CreatePostViewController: UIViewController {
     
     private func setUpVC(){
         constrainCreateButton()
-        constraintTitle()
         constrainBody()
         constrainExitButton()
     }
     
-    private func constraintTitle() {
-        view.addSubview(titleTextView)
-        titleTextView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleTextView.topAnchor.constraint(equalTo: createButton.bottomAnchor, constant: 5),
-            titleTextView.widthAnchor.constraint(equalToConstant: view.frame.width),
-            titleTextView.heightAnchor.constraint(equalToConstant: 70)])
-    }
+   
     
     private func constrainBody() {
            view.addSubview(bodyTextView)
            bodyTextView.translatesAutoresizingMaskIntoConstraints = false
            NSLayoutConstraint.activate([
-            bodyTextView.topAnchor.constraint(equalTo: titleTextView.bottomAnchor, constant: 1),
+            bodyTextView.topAnchor.constraint(equalTo: createButton.bottomAnchor, constant: 5),
                bodyTextView.widthAnchor.constraint(equalToConstant: view.frame.width),
                bodyTextView.heightAnchor.constraint(equalToConstant: view.frame.height / 3)])
        }
