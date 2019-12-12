@@ -13,6 +13,10 @@ import CircleMenu
 class FeedViewController: UIViewController {
     
     
+    
+    
+    
+    
     //MARK: Lifecycle Methods
     
     override func viewDidLoad() {
@@ -40,9 +44,15 @@ class FeedViewController: UIViewController {
     
     private let locationManager = CLLocationManager()
     
+    var postsForRegion = [Post]()
     
+    var neighborhood = ""
     
      //MARK: Private Methods
+    
+    private func getPostsForLocation(){
+        
+    }
     private func locationAuthorization(){
             let status = CLLocationManager.authorizationStatus()
             
