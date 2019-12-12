@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
         textField.textAlignment = .left
         textField.layer.cornerRadius = 15
         textField.backgroundColor = .init(white: 1.0, alpha: 0.2)
-        textField.textColor = .white
+        textField.textColor = .black
         textField.borderStyle = .roundedRect
         textField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
         return textField
@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
         textField.isSecureTextEntry = true
         textField.layer.cornerRadius = 15
         textField.backgroundColor = .init(white: 1.0, alpha: 0.2)
-        textField.textColor = .white
+        textField.textColor = .black
         textField.borderStyle = .roundedRect
         textField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
         return textField
@@ -65,7 +65,7 @@ class LoginViewController: UIViewController {
         textField.textAlignment = .left
         textField.layer.cornerRadius = 15
         textField.backgroundColor = .init(white: 1.0, alpha: 0.2)
-        textField.textColor = .white
+        textField.textColor = .black
         textField.borderStyle = .roundedRect
         textField.addTarget(self, action: #selector(validateFields), for: .editingChanged)
         textField.alpha = 0.0
@@ -125,7 +125,7 @@ class LoginViewController: UIViewController {
     
     lazy var createAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "Dont have an account?  ", attributes: [NSAttributedString.Key.font: UIFont(name: "Verdana", size: 14)!, NSAttributedString.Key.foregroundColor: UIColor.white])
+        let attributedTitle = NSMutableAttributedString(string: "Dont have an account?  ", attributes: [NSAttributedString.Key.font: UIFont(name: "Verdana", size: 14)!, NSAttributedString.Key.foregroundColor: UIColor.black])
         attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedString.Key.font: UIFont(name: "Verdana-Bold", size: 14)!, NSAttributedString.Key.foregroundColor:  UIColor.systemPurple ]))
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(showSignUp), for: .touchUpInside)
@@ -134,7 +134,7 @@ class LoginViewController: UIViewController {
     
     lazy var alreadyHaveAccountButton: UIButton = {
         let button = UIButton(type: .system)
-        let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedString.Key.font: UIFont(name: "Verdana", size: 14)!, NSAttributedString.Key.foregroundColor: UIColor.white])
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account?  ", attributes: [NSAttributedString.Key.font: UIFont(name: "Verdana", size: 14)!, NSAttributedString.Key.foregroundColor: UIColor.black])
         attributedTitle.append(NSAttributedString(string: "Login!", attributes: [NSAttributedString.Key.font: UIFont(name: "Verdana-Bold", size: 14)!, NSAttributedString.Key.foregroundColor:  UIColor.systemPurple ]))
         button.setAttributedTitle(attributedTitle, for: .normal)
         button.addTarget(self, action: #selector(showLogIn), for: .touchUpInside)
@@ -218,7 +218,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(red: 0.31, green: 0.33, blue: 0.36, alpha: 1)
+        view.backgroundColor = .white
         setupSubViews()
         view.addGestureRecognizer(tappedScreenRecognizer)
 
@@ -310,7 +310,7 @@ class LoginViewController: UIViewController {
     @objc func tryLogin() {
        
         guard let email = emailTextField.text, let password = passwordTextField.text else {
-             clearAllFields()
+            
             loginButton.startAnimation()
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please fill out all fields.", image: nil)
@@ -318,7 +318,7 @@ class LoginViewController: UIViewController {
             return
         }
         guard email.isValidEmail else {
-            clearAllFields()
+
             loginButton.startAnimation()
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid email", image: nil)
@@ -327,7 +327,7 @@ class LoginViewController: UIViewController {
             return
         }
         guard password.isValidPassword else {
-            clearAllFields()
+
             loginButton.startAnimation()
             loginButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid password. Passwords must have at least 8 characters.", image: nil)
@@ -343,7 +343,7 @@ class LoginViewController: UIViewController {
     @objc func trySignUp() {
         
         guard let email = emailTextField.text, let password = passwordTextField.text else {
-            clearAllFields()
+
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please fill out all fields.", image: nil)        }
@@ -351,7 +351,7 @@ class LoginViewController: UIViewController {
         }
         
         guard email.isValidEmail else {
-            clearAllFields()
+       
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid email", image: nil)         }
@@ -359,7 +359,7 @@ class LoginViewController: UIViewController {
         }
         
         guard password.isValidPassword else {
-            clearAllFields()
+
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid password. Passwords must have at least 8 characters.", image: nil)           }
@@ -368,7 +368,7 @@ class LoginViewController: UIViewController {
         }
         
         guard userNameTextField.hasText else {
-            clearAllFields()
+   
             signUpButton.startAnimation()
             signUpButton.stopAnimation(animationStyle: .shake, revertAfterDelay: 0.2) {
                 self.showFloatCellAlert(with: .topFloat, title: "oops!", description: "Please enter a valid user name.", image: nil)

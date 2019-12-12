@@ -227,6 +227,29 @@ extension FeedViewController: CLLocationManagerDelegate {
     //MARK: CircleMenu Delegate
 extension FeedViewController: CircleMenuDelegate {
     
+    //Logout function
+    func logout(){
+    let alert = UIAlertController(title: "Log Out?", message: nil, preferredStyle: .actionSheet)
+           let action = UIAlertAction.init(title: "Yup!", style: .destructive, handler: .some({ (action) in
+                DispatchQueue.main.async {
+                          FirebaseAuthService.manager.logOut { (result) in
+                          }
+                          guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+                              let sceneDelegate = windowScene.delegate as? SceneDelegate, let window = sceneDelegate.window
+                              else {
+                                  return
+                          }
+                          UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromBottom, animations: {
+                              window.rootViewController = LoginViewController()
+                          }, completion: nil)
+                      }
+           }))
+           let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+           alert.addAction(action)
+           alert.addAction(cancel)
+           present(alert, animated:true)
+    }
+    
     func menuOpened(_ circleMenu: CircleMenu) {
         UIImageView.animate(withDuration: 0.3, animations: {
             self.menuButtonBottom.constant = -self.view.frame.height / 2
@@ -255,7 +278,7 @@ extension FeedViewController: CircleMenuDelegate {
             createVC.currentLocation = self.currentLocation
             present(createVC, animated: true)
         case 1:
-            return
+            logout()
         default:
             break
         }
@@ -267,8 +290,11 @@ extension FeedViewController: CircleMenuDelegate {
             button.backgroundColor = .systemGreen
             button.setImage(UIImage(systemName: "textformat.alt"), for: .normal)
             button.tintColor = .white
+            button.showsTouchWhenHighlighted = true
         case 1:
-            return
+        button.showsTouchWhenHighlighted = true
+        button.setImage(UIImage(named: "trekking"), for: .normal)
+        
         default:
             break
         }
