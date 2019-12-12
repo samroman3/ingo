@@ -14,7 +14,7 @@ enum LocationFetchingError: Error {
     case noErrorMessage
 }
 
-class ZipCodeHelper {
+class GeocodeHelper {
     private init() {}
     
     

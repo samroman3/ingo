@@ -51,6 +51,10 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>&quot;This app needs access to your location to optimize your experience.&quot;</string>
+	<key>NSCameraUsageDescription</key>
+	<string>&quot;We need to access your camera&quot;</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>&quot;We need to use your photo library&quot;</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

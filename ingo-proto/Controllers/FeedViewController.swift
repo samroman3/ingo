@@ -44,14 +44,43 @@ class FeedViewController: UIViewController {
     
     private let locationManager = CLLocationManager()
     
-    var postsForRegion = [Post]()
+    var postsForRegion = [Post]() {
+        didSet {
+            feedTableView.reloadData()
+        }
+    }
     
     var neighborhood = ""
     
+    
+    
      //MARK: Private Methods
     
-    private func getPostsForLocation(){
-        
+    private func getAllPosts(){
+        FirestoreService.manager.getAllPosts(sortingCriteria: nil) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let posts):
+                    self.postsForRegion = posts
+                }
+            }
+        }
+    }
+    
+    private func getUserNameFromPost(creatorID: String) -> String {
+        var username = ""
+      FirestoreService.manager.getUserFromPost(creatorID: creatorID) { (result) in
+          switch result {
+          case .failure(let error):
+              print(error)
+            return
+          case .success(let user):
+            username = user.userName!
+          }
+      }
+        return username
     }
     private func locationAuthorization(){
             let status = CLLocationManager.authorizationStatus()
@@ -143,13 +172,17 @@ class FeedViewController: UIViewController {
 
     //MARK: TableView Extension
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return postsForRegion.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as? PostTableViewCell else { return UITableViewCell() }
-        
+        let post = postsForRegion[indexPath.row]
+        cell.bodyLabel.text = post.body
+        cell.usernameLabel.text = getUserNameFromPost(creatorID: post.creatorID)
         
         return cell
     }
