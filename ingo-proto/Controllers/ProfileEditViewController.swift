@@ -39,7 +39,7 @@ class ProfileEditViewController: UIViewController {
         button.setTitle("Add Image", for: .normal)
         button.setTitleColor(.white, for: .normal)
          button.titleLabel?.font = button.titleLabel?.font.withSize(34)
-        button.backgroundColor = .init(white: 0.2, alpha: 0.9)
+        button.backgroundColor = .init(white: 0.1, alpha: 0.9)
         button.addTarget(self, action: #selector(addImagePressed), for: .touchUpInside)
         button.showsTouchWhenHighlighted = true
         return button
@@ -53,8 +53,8 @@ class ProfileEditViewController: UIViewController {
         textField.autocorrectionType = .no
         textField.textAlignment = .left
         textField.layer.cornerRadius = 15
-        textField.backgroundColor = .init(white: 1.0, alpha: 0.2)
-        textField.textColor = .white
+        textField.backgroundColor = .clear
+        textField.textColor = .black
         textField.borderStyle = .roundedRect
         textField.delegate = self
         return textField
@@ -87,7 +87,7 @@ class ProfileEditViewController: UIViewController {
     //MARK: Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.init(white: 0.1, alpha: 1)
+        self.view.backgroundColor = .white
         setupViews()
         //MARK: TODO - load in user image and fields when coming from profile page
     }
@@ -287,10 +287,8 @@ extension ProfileEditViewController: UIImagePickerControllerDelegate, UINavigati
           FirebaseStorageService.profileManager.storeImage(image: imageData, completion: { [weak self] (result) in
               switch result{
               case .success(let url):
-                  //Note - defer UI response, update user image url in auth and in firestore when save is pressed
                   self?.imageURL = url
               case .failure(let error):
-                  //MARK: TODO - defer image not save alert, try again later. maybe make VC "dirty" to allow user to move on in nav stack
                   print(error)
               }
           })

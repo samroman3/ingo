@@ -117,12 +117,13 @@ class FeedViewController: UIViewController {
         let menu = CircleMenu(frame: CGRect(x: 200, y: 200, width: 50, height: 50), normalIcon: "cross", selectedIcon: "list" )
         
         menu.buttonsCount = 2
-        menu.setBackgroundImage(UIImage(systemName: "plus"), for: .normal)
+        menu.setBackgroundImage(UIImage(systemName: "circle.bottomthird.split"), for: .normal)
+
         //        menu.setBackgroundImage(UIImage(systemName: "xmark"), for: .selected)
         menu.tintColor = .white
         menu.duration = 0.4
         menu.distance = 120
-        menu.backgroundColor = .systemIndigo
+        menu.backgroundColor = .systemPurple
         menu.delegate = self
         menu.showsTouchWhenHighlighted = true
         return menu
@@ -148,8 +149,8 @@ class FeedViewController: UIViewController {
         view.addSubview(menuButton)
         menuButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            menuButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            menuButton.heightAnchor.constraint(equalToConstant: 55),
+            menuButtonTrailing,
+            menuButton.heightAnchor.constraint(equalToConstant: 50),
             menuButton.widthAnchor.constraint(equalToConstant: 50)])
         menuButtonBottom.isActive = true
     }
@@ -158,7 +159,9 @@ class FeedViewController: UIViewController {
         self.menuButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     }()
     
-    
+    lazy var menuButtonTrailing: NSLayoutConstraint = {
+        self.menuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 4)
+    }()
     
     
     
@@ -252,7 +255,7 @@ extension FeedViewController: CircleMenuDelegate {
     
     func menuOpened(_ circleMenu: CircleMenu) {
         UIImageView.animate(withDuration: 0.3, animations: {
-            self.menuButtonBottom.constant = -self.view.frame.height / 2
+            self.menuButtonBottom.constant = -self.view.frame.height / 3
             self.view.layoutIfNeeded()
         }, completion: nil)
         
@@ -294,7 +297,7 @@ extension FeedViewController: CircleMenuDelegate {
         case 1:
         button.showsTouchWhenHighlighted = true
         button.setImage(UIImage(named: "trekking"), for: .normal)
-        
+        button.backgroundColor = .systemRed
         default:
             break
         }
