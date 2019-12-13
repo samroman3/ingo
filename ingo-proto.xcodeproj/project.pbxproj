@@ -183,7 +183,6 @@
 				3A9ED6BF237B421F00D64483 /* Utilities */,
 				3A9ED6BD237B41D900D64483 /* Supporting Files */,
 				3A9ED68C237B3E3400D64483 /* Main.storyboard */,
-				3A9ED6B6237B3E8900D64483 /* GoogleService-Info.plist */,
 				3A9ED68F237B3E3700D64483 /* Assets.xcassets */,
 				3A9ED694237B3E3700D64483 /* Info.plist */,
 			);
@@ -309,6 +308,7 @@
 			isa = PBXGroup;
 			children = (
 				3AF019E223A41DC50030C8CD /* LocationIQSecrets.swift */,
+				3A9ED6B6237B3E8900D64483 /* GoogleService-Info.plist */,
 			);
 			path = Secrets;
 			sourceTree = "<group>";
