@@ -54,7 +54,11 @@ class FeedViewController: UIViewController {
         }
     }
     
-    var neighborhood = ""
+    var neighborhood = "" {
+        didSet {
+            navigationItem.title = self.neighborhood
+        }
+    }
     
     
     
@@ -91,6 +95,13 @@ class FeedViewController: UIViewController {
         constrainFeedTableView()
         constrainMenu()
         locationManager.delegate = self
+        view.backgroundColor = .init(white: 0.2, alpha: 0.8)
+        navigationController?.navigationBar.barTintColor = .systemPurple
+        navigationItem.title = "ingo"
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.backgroundColor = .systemPurple
+        navigationController?.navigationBar.tintColor = .white
+        
     }
     
     
@@ -100,6 +111,11 @@ class FeedViewController: UIViewController {
         let tv = UITableView()
         tv.backgroundColor = .init(white: 1, alpha: 1)
         return tv
+    }()
+    
+    lazy var topCollectionView: UICollectionView = {
+        let cv = UICollectionView()
+        return cv
     }()
     
     lazy var menuButton: CircleMenu = {
@@ -128,7 +144,7 @@ class FeedViewController: UIViewController {
         feedTableView.dataSource = self
         feedTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            feedTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            feedTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 150),
             feedTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             feedTableView.widthAnchor.constraint(equalToConstant: view.frame.width),
             feedTableView.heightAnchor.constraint(equalToConstant: view.frame.height)
