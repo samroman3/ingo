@@ -25,7 +25,6 @@ class FeedViewController: UIViewController {
         setUpVC()
         locationAuthorization()
         setNeighborhood()
-        feedTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
        
         
         // Do any additional setup after loading the view.
@@ -35,6 +34,7 @@ class FeedViewController: UIViewController {
         super.viewWillAppear(animated)
         setNeighborhood()
     }
+    
     
     override func viewWillLayoutSubviews() {
         menuButton.layer.cornerRadius = (menuButton.frame.size.width) / 2
@@ -97,6 +97,7 @@ class FeedViewController: UIViewController {
                     print(error)
                 case .success(let postsFromLocation):
                     self.posts = postsFromLocation
+                    self.feedTableView.reloadData()
                 }
             }
         }
@@ -135,6 +136,7 @@ class FeedViewController: UIViewController {
         constrainMenu()
         locationManager.delegate = self
         view.backgroundColor = .init(white: 0.2, alpha: 0.8)
+        feedTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
 //        navigationController?.navigationBar.barTintColor = .systemPurple
 //        navigationController?.navigationBar.barStyle = .black
 //        navigationController?.navigationBar.backgroundColor = .systemPurple
@@ -340,7 +342,9 @@ extension FeedViewController: CircleMenuDelegate {
             createVC.modalPresentationStyle = .overCurrentContext
             createVC.currentLocation = self.currentLocation
             createVC.neighborhood = (dataForLocation?.address?.neighbourhood)!
-            present(createVC, animated: true)
+            let nav = navigationController
+            nav?.pushViewController(createVC, animated: true)
+//            present(createVC, animated: true)
         case 1:
             logout()
         default:

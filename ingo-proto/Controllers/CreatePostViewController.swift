@@ -18,6 +18,7 @@ class CreatePostViewController: UIViewController {
     override func viewDidLoad() {
         view.backgroundColor = .init(white: 1, alpha: 1)
         setUpVC()
+        navigationController?.navigationBar.isHidden = true
         super.viewDidLoad()
         
     }
@@ -55,7 +56,8 @@ class CreatePostViewController: UIViewController {
     }()
     
     @objc func exitButtonPressed(sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
+//        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -71,7 +73,8 @@ class CreatePostViewController: UIViewController {
                 print(error)
             case .success():
                 print("created post")
-                self.dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+//                self.dismiss(animated: true, completion: nil)
             }
         }
         
