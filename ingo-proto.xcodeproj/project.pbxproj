@@ -34,7 +34,6 @@
 		3AF019E323A41DC50030C8CD /* LocationIQSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019E223A41DC50030C8CD /* LocationIQSecrets.swift */; };
 		3AF019E723A41FF50030C8CD /* locationtest.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AF019E623A41FF50030C8CD /* locationtest.json */; };
 		3AF019E923A420410030C8CD /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019E823A420410030C8CD /* LocationData.swift */; };
-		3AF019EA23A421080030C8CD /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019E823A420410030C8CD /* LocationData.swift */; };
 		3AF019EC23A4234A0030C8CD /* LocationAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019EB23A4234A0030C8CD /* LocationAPIClient.swift */; };
 		3AF3630E2394760B006717C0 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3630D2394760B006717C0 /* Vote.swift */; };
 		3AF36310239478B9006717C0 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3630F239478B9006717C0 /* FirebaseStorageService.swift */; };
@@ -244,6 +243,7 @@
 				3A9ED6C5237B429000D64483 /* Comment.swift */,
 				3A9ED6C7237B42A100D64483 /* Post.swift */,
 				3AF3630D2394760B006717C0 /* Vote.swift */,
+				3AF019E823A420410030C8CD /* LocationData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -309,7 +309,6 @@
 			children = (
 				3AF019DD23A41CBE0030C8CD /* NetworkManager.swift */,
 				3AF019DF23A41CDB0030C8CD /* AppError.swift */,
-				3AF019E823A420410030C8CD /* LocationData.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -594,7 +593,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3AF019EA23A421080030C8CD /* LocationData.swift in Sources */,
 				3A9ED69E237B3E3700D64483 /* ingo_protoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

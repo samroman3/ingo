@@ -25,7 +25,7 @@ class FeedViewController: UIViewController {
         setUpVC()
         locationAuthorization()
         getAllPosts()
-        getLocale()
+        setNeighborhood()
         feedTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
        
         
@@ -55,11 +55,12 @@ class FeedViewController: UIViewController {
         }
     }
     
-    var neighborhood = "" {
+    var dataForLocation: LocationData? {
         didSet {
-            navigationItem.title = self.neighborhood
+            navigationItem.title = dataForLocation?.address?.neighbourhood
         }
     }
+   
     
     
     
@@ -78,8 +79,17 @@ class FeedViewController: UIViewController {
         }
     }
     
-    private func getLocale(){
-     
+    private func setNeighborhood(){
+        LocationAPIClient.shared.getLocationDataFrom(lat: currentLocation.latitude, long: currentLocation.longitude) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let data):
+                    self.dataForLocation = data
+                }
+            }
+        }
     }
     
     

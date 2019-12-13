@@ -14,8 +14,8 @@ struct LocationAPIClient {
     
     static let shared = LocationAPIClient()
     
-    func getLocationDataFrom(long: Double, lat: Double, completionHandler: @escaping (Result<LocationData, AppError>) -> ()) {
-        let urlStr = ""
+    func getLocationDataFrom(lat: Double, long: Double, completionHandler: @escaping (Result<LocationData, AppError>) -> ()) {
+        let urlStr = "https://us1.locationiq.com/v1/reverse.php?key=\(LocationIQSecrets.apiKey)&lat=\(lat)&lon=\(long)&format=json"
         
         guard let url = URL(string: urlStr) else {
             completionHandler(.failure(AppError.badURL))
