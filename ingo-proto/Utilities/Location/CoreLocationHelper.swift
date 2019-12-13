@@ -14,7 +14,7 @@ enum LocationFetchingError: Error {
     case noErrorMessage
 }
 
-class GeocodeHelper {
+class CoreLocationHelper {
     private init() {}
     
     
@@ -40,7 +40,7 @@ class GeocodeHelper {
     }
     
     
-    static func getRegionInfo(lat: Double, long: Double, completion: @escaping (Result<CLPlacemark,LocationFetchingError>) -> Void ) {
+    static func getRegionInfoFromCL(lat: Double, long: Double, completion: @escaping (Result<CLPlacemark,LocationFetchingError>) -> Void ) {
         let geocoder = CLGeocoder()
         DispatchQueue.global(qos: .userInitiated).async {
             
@@ -56,4 +56,6 @@ class GeocodeHelper {
             }
         }
     }
+    
+    
 }

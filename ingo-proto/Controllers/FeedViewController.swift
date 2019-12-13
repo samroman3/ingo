@@ -79,16 +79,7 @@ class FeedViewController: UIViewController {
     }
     
     private func getLocale(){
-        GeocodeHelper.getRegionInfo(lat: currentLocation.latitude, long: currentLocation.longitude) { (result) in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let placemark):
-                print(placemark.subLocality)
-                print(placemark.locality)
-                print(placemark.administrativeArea)
-            }
-        }
+     
     }
     
     

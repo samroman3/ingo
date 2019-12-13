@@ -1,5 +1,5 @@
 //
-//  LocationIQAPIClient.swift
+//  LocationData.swift
 //  ingo-proto
 //
 //  Created by Sam Roman on 12/13/19.
