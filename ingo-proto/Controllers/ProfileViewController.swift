@@ -30,6 +30,7 @@ class ProfileViewController: UIViewController {
     lazy var profileTableView: UITableView = {
         let tv = UITableView()
         tv.backgroundColor = .blue
+        tv.isScrollEnabled = false
         return tv
     }()
     
@@ -50,7 +51,8 @@ class ProfileViewController: UIViewController {
         profileTableView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
         profileTableView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
 //        otherView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: 0).isActive = true
-        profileTableView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor, constant: 150).isActive = true
+        profileTableView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 200).isActive = true
+        profileTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
     
 
