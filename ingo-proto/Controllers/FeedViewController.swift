@@ -25,6 +25,7 @@ class FeedViewController: UIViewController {
         setUpVC()
         locationAuthorization()
         getAllPosts()
+        getLocale()
         feedTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
        
         
@@ -77,6 +78,19 @@ class FeedViewController: UIViewController {
         }
     }
     
+    private func getLocale(){
+        GeocodeHelper.getRegionInfo(lat: currentLocation.latitude, long: currentLocation.longitude) { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let placemark):
+                print(placemark.subLocality)
+                print(placemark.locality)
+                print(placemark.administrativeArea)
+            }
+        }
+    }
+    
     
     private func locationAuthorization(){
             let status = CLLocationManager.authorizationStatus()
@@ -90,6 +104,7 @@ class FeedViewController: UIViewController {
                 locationManager.requestWhenInUseAuthorization()
             }
         }
+    
     
     private func setUpVC(){
         constrainFeedTableView()
