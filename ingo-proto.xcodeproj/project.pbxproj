@@ -29,6 +29,8 @@
 		3AF019D423A15B890030C8CD /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019D323A15B890030C8CD /* CreatePostViewController.swift */; };
 		3AF019D723A199F20030C8CD /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019D623A199F20030C8CD /* PostTableViewCell.swift */; };
 		3AF019DA23A2D5870030C8CD /* GeocodeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019D923A2D5870030C8CD /* GeocodeHelper.swift */; };
+		3AF019DE23A41CBE0030C8CD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019DD23A41CBE0030C8CD /* NetworkManager.swift */; };
+		3AF019E023A41CDB0030C8CD /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019DF23A41CDB0030C8CD /* AppError.swift */; };
 		3AF3630E2394760B006717C0 /* Vote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3630D2394760B006717C0 /* Vote.swift */; };
 		3AF36310239478B9006717C0 /* FirebaseStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3630F239478B9006717C0 /* FirebaseStorageService.swift */; };
 		3AF3631223947ADB006717C0 /* ProfileEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF3631123947ADB006717C0 /* ProfileEditViewController.swift */; };
@@ -82,6 +84,8 @@
 		3AF019D323A15B890030C8CD /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		3AF019D623A199F20030C8CD /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 		3AF019D923A2D5870030C8CD /* GeocodeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeocodeHelper.swift; sourceTree = "<group>"; };
+		3AF019DD23A41CBE0030C8CD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		3AF019DF23A41CDB0030C8CD /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		3AF3630D2394760B006717C0 /* Vote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		3AF3630F239478B9006717C0 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		3AF3631123947ADB006717C0 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
@@ -257,9 +261,10 @@
 		3A9ED6BF237B421F00D64483 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				3AF019DC23A41C5B0030C8CD /* Network */,
 				3AF019D823A2D5750030C8CD /* Location */,
-				3A9ED6C0237B422900D64483 /* Extensions */,
 				3A9ED6BE237B41F400D64483 /* Firebase */,
+				3A9ED6C0237B422900D64483 /* Extensions */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -283,17 +288,18 @@
 		3AF019D823A2D5750030C8CD /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				3AF019DB23A419200030C8CD /* GoogleGeocodeAPIClient */,
 				3AF019D923A2D5870030C8CD /* GeocodeHelper.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
 		};
-		3AF019DB23A419200030C8CD /* GoogleGeocodeAPIClient */ = {
+		3AF019DC23A41C5B0030C8CD /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				3AF019DD23A41CBE0030C8CD /* NetworkManager.swift */,
+				3AF019DF23A41CDB0030C8CD /* AppError.swift */,
 			);
-			path = GoogleGeocodeAPIClient;
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -545,8 +551,10 @@
 				3AF3630E2394760B006717C0 /* Vote.swift in Sources */,
 				3A9ED687237B3E3400D64483 /* AppDelegate.swift in Sources */,
 				3A3773D2237C54110034EA59 /* FeedViewController.swift in Sources */,
+				3AF019DE23A41CBE0030C8CD /* NetworkManager.swift in Sources */,
 				3A9ED6CE237B446600D64483 /* LoginViewController.swift in Sources */,
 				3A9ED6C8237B42A100D64483 /* Post.swift in Sources */,
+				3AF019E023A41CDB0030C8CD /* AppError.swift in Sources */,
 				3A3773D4237C545A0034EA59 /* ProfileViewController.swift in Sources */,
 				3AF36310239478B9006717C0 /* FirebaseStorageService.swift in Sources */,
 				3A3773D0237C53B60034EA59 /* MainTabViewController.swift in Sources */,
