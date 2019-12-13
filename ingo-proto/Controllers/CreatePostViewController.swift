@@ -59,7 +59,8 @@ class CreatePostViewController: UIViewController {
     
     
     @objc func createPostPressed(sender: UIButton) {
-        guard bodyTextView.text != nil, bodyTextView.text != "" else { return }
+        
+        guard bodyTextView.text != nil, bodyTextView.text != "", bodyTextView.text != "New Post..." else { return }
         guard let user = FirebaseAuthService.manager.currentUser else { return }
     
         
@@ -125,18 +126,9 @@ class CreatePostViewController: UIViewController {
 
 extension CreatePostViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
-        switch textView.tag {
-        case 0:
-            guard textView.text == "Title..." else {
-                return
-            }
-            textView.text = ""
-        case 1:
-            guard textView.text == "Body..." else { return }
-            textView.text = ""
-        default:
-            break
-        }
+      guard textView.text == "New Post..." else { return }
+        textView.text = ""
+
     }
     
     func textViewDidChangeSelection(_ textView: UITextView) {
@@ -144,7 +136,7 @@ extension CreatePostViewController: UITextViewDelegate {
         createButton.titleLabel?.textColor = .lightGray
         createButton.isEnabled = false
             return }
-        createButton.titleLabel?.textColor = .white
+        createButton.titleLabel?.textColor = .black
         createButton.isEnabled = true
     }
 }

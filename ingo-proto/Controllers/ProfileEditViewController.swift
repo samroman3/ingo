@@ -12,10 +12,6 @@ import Photos
 class ProfileEditViewController: UIViewController {
 
     var settingFromLogin = false
-
-    //MARK: TODO - set up views using autolayout, not frames
-    //MARK: TODO - edit other fields in this VC
-    
     
         //MARK: Properties
     var image = UIImage() {
@@ -89,7 +85,6 @@ class ProfileEditViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         setupViews()
-        //MARK: TODO - load in user image and fields when coming from profile page
     }
     
     override func viewDidLayoutSubviews() {
@@ -117,12 +112,7 @@ class ProfileEditViewController: UIViewController {
                     case .success():
                         self?.handleNavigationAwayFromVC()
                     case .failure(let error):
-                        //MARK: TODO - handle
-
-                        //Discussion - if can't update on user object in collection, our firestore object will not match what is in auth. should we:
-                        // 1. Re-try the save?
-                        // 2. Revert the changes on the auth user?
-                        // This reconciliation should all be handled on the server side, but having to handle here, we could run into an infinite loop when re-saving.
+                     
                         print(error)
                     }
                 }

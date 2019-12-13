@@ -20,16 +20,20 @@ class FeedViewController: UIViewController {
     //MARK: Lifecycle Methods
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = .white
         setUpVC()
         locationAuthorization()
-        super.viewDidLoad()
+        getAllPosts()
+        feedTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
+       
         
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        getAllPosts()
     }
     
     override func viewWillLayoutSubviews() {
@@ -44,7 +48,7 @@ class FeedViewController: UIViewController {
     
     private let locationManager = CLLocationManager()
     
-    var postsForRegion = [Post]() {
+    var posts = [Post]() {
         didSet {
             feedTableView.reloadData()
         }
@@ -56,14 +60,14 @@ class FeedViewController: UIViewController {
     
      //MARK: Private Methods
     
-    private func getAllPosts(){
-        FirestoreService.manager.getAllPosts(sortingCriteria: nil) { (result) in
-            DispatchQueue.main.async {
-                switch result {
-                case .failure(let error):
-                    print(error)
-                case .success(let posts):
-                    self.postsForRegion = posts
+    private func getAllPosts() {
+        FirestoreService.manager.getAllPosts() { (result) in
+            switch result {
+            case .failure(let error):
+                print(error)
+            case .success(let postsFromFirebase):
+                DispatchQueue.main.async {
+                    self.posts = postsFromFirebase
                 }
             }
         }
@@ -107,9 +111,6 @@ class FeedViewController: UIViewController {
     lazy var feedTableView: UITableView = {
         let tv = UITableView()
         tv.backgroundColor = .init(white: 1, alpha: 1)
-        tv.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
-        tv.delegate = self
-        tv.dataSource = self
         return tv
     }()
     
@@ -135,6 +136,8 @@ class FeedViewController: UIViewController {
     //MARK: Constraint Methods
     private func constrainFeedTableView() {
         view.addSubview(feedTableView)
+        feedTableView.delegate = self
+        feedTableView.dataSource = self
         feedTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             feedTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -176,27 +179,25 @@ class FeedViewController: UIViewController {
     //MARK: TableView Extension
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return postsForRegion.count
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as? PostTableViewCell else { return UITableViewCell() }
-        let post = postsForRegion[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! PostTableViewCell
+        let post = posts[indexPath.row]
         cell.bodyLabel.text = post.body
         cell.usernameLabel.text = getUserNameFromPost(creatorID: post.creatorID)
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 150
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 10
-//    }
 }
 
     //MARK: LocationManager Delegate
