@@ -60,6 +60,7 @@ class FeedViewController: UIViewController {
             navigationItem.title = dataForLocation?.address?.neighbourhood
         }
     }
+    
    
     
     
@@ -316,6 +317,7 @@ extension FeedViewController: CircleMenuDelegate {
             let createVC = CreatePostViewController()
             createVC.modalPresentationStyle = .overCurrentContext
             createVC.currentLocation = self.currentLocation
+            createVC.neighborhood = (dataForLocation?.address?.neighbourhood)!
             present(createVC, animated: true)
         case 1:
             logout()
