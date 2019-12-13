@@ -24,7 +24,6 @@ class FeedViewController: UIViewController {
         view.backgroundColor = .white
         setUpVC()
         locationAuthorization()
-        getAllPosts()
         setNeighborhood()
         feedTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
        
@@ -33,8 +32,8 @@ class FeedViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        getAllPosts()
+        super.viewWillAppear(animated)
+        setNeighborhood()
     }
     
     override func viewWillLayoutSubviews() {
@@ -45,21 +44,31 @@ class FeedViewController: UIViewController {
     
     
     //MARK: Private Properties
-    private var currentLocation = CLLocationCoordinate2D.init(latitude: 40.6782, longitude: -73.9442)
+    private var currentLocation = CLLocationCoordinate2D.init(latitude: 40.684042000, longitude: -73.909234000) {
+        didSet {
+            setNeighborhood()
+        }
+    }
     
     private let locationManager = CLLocationManager()
     
     var posts = [Post]() {
         didSet {
-            feedTableView.reloadData()
+            self.feedTableView.reloadData()
         }
     }
     
     var dataForLocation: LocationData? {
         didSet {
+            
             navigationItem.title = dataForLocation?.address?.neighbourhood
+            self.neighborhood = (dataForLocation?.address?.neighbourhood)!
+            getPostsForLocation(neighborhood: neighborhood)
         }
     }
+    
+    var neighborhood = ""
+    
     
    
     
@@ -75,6 +84,19 @@ class FeedViewController: UIViewController {
                 print(error)
             case .success(let postsFromFirebase):
                     self.posts = postsFromFirebase
+                }
+            }
+        }
+    }
+    
+    private func getPostsForLocation(neighborhood: String){
+        FirestoreService.manager.getPostsForNeighborhood(location: neighborhood) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let postsFromLocation):
+                    self.posts = postsFromLocation
                 }
             }
         }

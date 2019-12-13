@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController {
         sv.backgroundColor = .gray
         sv.showsVerticalScrollIndicator = true
         sv.decelerationRate = .fast
+    
         return sv
     }()
     
