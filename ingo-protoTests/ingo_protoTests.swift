@@ -20,7 +20,19 @@ class ingo_protoTests: XCTestCase {
     }
 
     func testLocationIQDecoder(){
-        
-    }
+      var testLocation: LocationData?
+            guard let path = Bundle.main.path(forResource: "locationtest", ofType: "json") else { return }
+                       
+                       let url = URL(fileURLWithPath: path)
+                       do {
+                           let data = try Data(contentsOf: url)
+                        testLocation = try LocationData.getLocationFromData(data: data)
+                        print(testLocation?.placeID)
+                       } catch {
+                           print(error)
+                          
+                       }
+                   XCTAssertTrue(testLocation != nil , "Failed to load listings" )
+        }
 
 }
