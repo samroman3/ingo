@@ -62,30 +62,18 @@ class FeedViewController: UIViewController {
     
     private func getAllPosts() {
         FirestoreService.manager.getAllPosts() { (result) in
+            DispatchQueue.main.async {
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let postsFromFirebase):
-                DispatchQueue.main.async {
                     self.posts = postsFromFirebase
                 }
             }
         }
     }
     
-    private func getUserNameFromPost(creatorID: String) -> String {
-        var username = ""
-      FirestoreService.manager.getUserFromPost(creatorID: creatorID) { (result) in
-          switch result {
-          case .failure(let error):
-              print(error)
-            return
-          case .success(let user):
-            username = user.userName!
-          }
-      }
-        return username
-    }
+    
     private func locationAuthorization(){
             let status = CLLocationManager.authorizationStatus()
             
@@ -187,10 +175,25 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! PostTableViewCell
         let post = posts[indexPath.row]
         cell.bodyLabel.text = post.body
-        cell.usernameLabel.text = getUserNameFromPost(creatorID: post.creatorID)
+        
+        
+        //sets username in postcell
+        FirestoreService.manager.getUserFromPost(creatorID: post.creatorID) { (result) in
+          DispatchQueue.main.async {
+            switch result {
+            case .failure(let error):
+                print(error)
+              return
+            case .success(let user):
+                cell.usernameLabel.text = user.userName!
+            }
+        }
+          }
         return cell
     }
     
