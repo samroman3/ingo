@@ -283,9 +283,17 @@
 		3AF019D823A2D5750030C8CD /* Location */ = {
 			isa = PBXGroup;
 			children = (
+				3AF019DB23A419200030C8CD /* GoogleGeocodeAPIClient */,
 				3AF019D923A2D5870030C8CD /* GeocodeHelper.swift */,
 			);
 			path = Location;
+			sourceTree = "<group>";
+		};
+		3AF019DB23A419200030C8CD /* GoogleGeocodeAPIClient */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GoogleGeocodeAPIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

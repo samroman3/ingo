@@ -111,11 +111,10 @@ class FeedViewController: UIViewController {
         constrainMenu()
         locationManager.delegate = self
         view.backgroundColor = .init(white: 0.2, alpha: 0.8)
-        navigationController?.navigationBar.barTintColor = .systemPurple
-        navigationItem.title = "ingo"
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.backgroundColor = .systemPurple
-        navigationController?.navigationBar.tintColor = .white
+//        navigationController?.navigationBar.barTintColor = .systemPurple
+//        navigationController?.navigationBar.barStyle = .black
+//        navigationController?.navigationBar.backgroundColor = .systemPurple
+//        navigationController?.navigationBar.tintColor = .white
         
     }
     
@@ -137,7 +136,7 @@ class FeedViewController: UIViewController {
         let menu = CircleMenu(frame: CGRect(x: 200, y: 200, width: 50, height: 50), normalIcon: "cross", selectedIcon: "list" )
         
         menu.buttonsCount = 2
-        menu.setBackgroundImage(UIImage(systemName: "circle.bottomthird.split"), for: .normal)
+        menu.setBackgroundImage(UIImage(systemName: "line.horizontal.3.decrease.circle"), for: .normal)
 
         //        menu.setBackgroundImage(UIImage(systemName: "xmark"), for: .selected)
         menu.tintColor = .white
@@ -166,6 +165,8 @@ class FeedViewController: UIViewController {
         ])
         
     }
+    
+    
     
     private func constrainMenu(){
         view.addSubview(menuButton)
@@ -208,10 +209,10 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! PostTableViewCell
         let post = posts[indexPath.row]
         cell.bodyLabel.text = post.body
-        
         
         //sets username in postcell
         FirestoreService.manager.getUserFromPost(creatorID: post.creatorID) { (result) in
@@ -326,12 +327,13 @@ extension FeedViewController: CircleMenuDelegate {
         switch atIndex {
         case 0:
             button.backgroundColor = .systemGreen
-            button.setImage(UIImage(systemName: "textformat.alt"), for: .normal)
+            button.setBackgroundImage(UIImage(systemName: "pencil.circle"), for: .normal)
             button.tintColor = .white
             button.showsTouchWhenHighlighted = true
         case 1:
         button.showsTouchWhenHighlighted = true
-        button.setImage(UIImage(named: "trekking"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "gear"), for: .normal)
+        button.tintColor = .white
         button.backgroundColor = .systemRed
         default:
             break
