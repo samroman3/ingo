@@ -39,6 +39,11 @@ class FeedViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         menuButton.layer.cornerRadius = (menuButton.frame.size.width) / 2
         menuButton.clipsToBounds = true
+        self.feedTableView.estimatedRowHeight = 180
+               self.feedTableView.rowHeight = UITableView.automaticDimension
+               self.feedTableView.setNeedsLayout()
+               self.feedTableView.layoutIfNeeded()
+               self.feedTableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
         
     }
     
@@ -134,13 +139,10 @@ class FeedViewController: UIViewController {
     private func setUpVC(){
         constrainFeedTableView()
         constrainMenu()
-        locationManager.delegate = self
+        self.locationManager.delegate = self
         view.backgroundColor = .init(white: 0.2, alpha: 0.8)
-        feedTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
-//        navigationController?.navigationBar.barTintColor = .systemPurple
-//        navigationController?.navigationBar.barStyle = .black
-//        navigationController?.navigationBar.backgroundColor = .systemPurple
-//        navigationController?.navigationBar.tintColor = .white
+        self.feedTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
+       
         
     }
     
@@ -255,10 +257,10 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
-    }
-    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 150
+//    }
+//
 }
 
     //MARK: LocationManager Delegate

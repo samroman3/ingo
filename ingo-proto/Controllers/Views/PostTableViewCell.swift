@@ -14,7 +14,7 @@ class PostTableViewCell: UITableViewCell {
          let label = UILabel()
            label.textAlignment = .left
            label.textColor = .black
-           label.numberOfLines = 2
+           label.numberOfLines = 0
            label.text = "usernameLabel"
         label.font = label.font.withSize(13)
            return label
@@ -60,9 +60,11 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(bodyLabel)
         bodyLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bodyLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 10),
+            bodyLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 5),
             bodyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            bodyLabel.heightAnchor.constraint(equalToConstant: 20)])
+            bodyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 5),
+            bodyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+        ])
     }
 
     override func awakeFromNib() {
