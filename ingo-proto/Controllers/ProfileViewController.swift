@@ -89,6 +89,8 @@ class ProfileViewController: UIViewController {
       override func viewDidLoad() {
           super.viewDidLoad()
           setUpVC()
+        navigationController?.navigationBar.isHidden = true
+        
           profileTableView.delegate = self
           profileTableView.dataSource = self
          }
@@ -98,7 +100,7 @@ class ProfileViewController: UIViewController {
         profileImage.clipsToBounds = true
         profileImage.layer.borderWidth = 3.0
         profileImage.layer.borderColor = UIColor.white.cgColor
-          self.scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + profileTableView.frame.width)
+          self.scrollView.contentSize = CGSize(width: view.bounds.width, height: 200 + profileTableView.frame.height)
           
           
       }
@@ -206,7 +208,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

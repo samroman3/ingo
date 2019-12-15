@@ -32,6 +32,7 @@ class FeedViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
         setNeighborhood()
     }
     
@@ -44,6 +45,7 @@ class FeedViewController: UIViewController {
                self.feedTableView.setNeedsLayout()
                self.feedTableView.layoutIfNeeded()
                self.feedTableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        setNeighborhood()
         
     }
     
@@ -177,6 +179,13 @@ class FeedViewController: UIViewController {
     }()
     
     
+//    lazy var neighborhoodLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = ""
+//        label.textColor = .white
+//        return label
+//    }()
+//
     
     
     //MARK: Constraint Methods
