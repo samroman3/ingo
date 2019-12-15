@@ -14,6 +14,9 @@ class ProfileViewController: UIViewController {
     var user: AppUser!
     
     var isCurrentUser = false
+    
+    var imageURL: String? = nil
+    
    
     lazy var scrollView: UIScrollView = {
         let sv = UIScrollView()
@@ -69,11 +72,6 @@ class ProfileViewController: UIViewController {
         return button
     }()
     
-//    lazy var profileView: UIView = {
-//        let pv = UIView()
-//
-//        return pv
-//    }
 
     @objc private func editAction(){
         let editVC = ProfileEditViewController()
@@ -81,12 +79,60 @@ class ProfileViewController: UIViewController {
         present(editVC, animated: true, completion: nil)
     }
     
+    //MARK: Lifecycle Methods
+    
+    override func viewWillAppear(_ animated: Bool) {
+          super.viewWillAppear(true)
+          setUpVC()
+      }
+      
+      override func viewDidLoad() {
+          super.viewDidLoad()
+          setUpVC()
+          profileTableView.delegate = self
+          profileTableView.dataSource = self
+         }
+      
+      override func viewDidLayoutSubviews() {
+        profileImage.layer.cornerRadius = (profileImage.frame.size.width) / 2
+        profileImage.clipsToBounds = true
+        profileImage.layer.borderWidth = 3.0
+        profileImage.layer.borderColor = UIColor.white.cgColor
+          self.scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + profileTableView.frame.width)
+          
+          
+      }
+    
+    
+    
+    //MARK: Private Methods
+    private func setUserName() {
+           if let displayName = FirebaseAuthService.manager.currentUser?.displayName {
+               userName.text = displayName
+           }
+       }
+       private func setProfileImage() {
+           if let pictureUrl = FirebaseAuthService.manager.currentUser?.photoURL {
+               FirebaseStorageService.profileManager.getUserImage(photoUrl: pictureUrl) { (result) in
+                   switch result {
+                   case .failure(let error):
+                       print(error)
+                   case .success(let image):
+                       self.profileImage.image = image
+                   }
+               }
+           }
+       }
+    
     
     private func setUpVC(){
+        setUpSubViews()
         constrainScrollView()
         constrainOtherView()
         constrainProfileImage()
         constrainUserName()
+        setProfileImage()
+        setUserName()
 //        constrainEditButton()
     }
     
@@ -96,13 +142,7 @@ class ProfileViewController: UIViewController {
         scrollView.addSubview(profileImage)
         scrollView.addSubview(userName)
     }
-    
-    private func setProfileImageRadius(){
-        profileImage.layer.cornerRadius = (profileImage.frame.size.width) / 2
-        profileImage.clipsToBounds = true
-        profileImage.layer.borderWidth = 3.0
-        profileImage.layer.borderColor = UIColor.white.cgColor
-    }
+   
     
 
     private func constrainProfileImage(){
@@ -124,7 +164,7 @@ class ProfileViewController: UIViewController {
            NSLayoutConstraint.activate([
                userName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 10),
                userName.heightAnchor.constraint(equalToConstant: 30),
-               userName.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: 10),
+               userName.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: 25),
                userName.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -10)
            ])
        }
@@ -158,27 +198,6 @@ class ProfileViewController: UIViewController {
 //        otherView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: 0).isActive = true
         profileTableView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 200).isActive = true
         profileTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-    }
-    
-   
-    
-    
-    
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUpSubViews()
-        profileTableView.delegate = self
-        profileTableView.dataSource = self
-       }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setUpVC()
-        setProfileImageRadius()
-        self.scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + profileTableView.frame.width)
-        
-        
     }
 
 }
