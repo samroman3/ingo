@@ -296,7 +296,7 @@ extension FeedViewController: CircleMenuDelegate {
     
     //Logout function
     func logout(){
-    let alert = UIAlertController(title: "Log Out?", message: nil, preferredStyle: .actionSheet)
+    let alert = UIAlertController(title: "Log Out?", message: nil, preferredStyle: .alert)
            let action = UIAlertAction.init(title: "Yup!", style: .destructive, handler: .some({ (action) in
                 DispatchQueue.main.async {
                           FirebaseAuthService.manager.logOut { (result) in
@@ -357,7 +357,7 @@ extension FeedViewController: CircleMenuDelegate {
     func circleMenu(_ circleMenu: CircleMenu, willDisplay button: UIButton, atIndex: Int) {
         switch atIndex {
         case 0:
-            button.backgroundColor = .systemGreen
+            button.backgroundColor = .systemPurple
             button.setBackgroundImage(UIImage(systemName: "pencil.circle"), for: .normal)
             button.tintColor = .white
             button.showsTouchWhenHighlighted = true

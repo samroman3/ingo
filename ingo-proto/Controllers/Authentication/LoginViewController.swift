@@ -150,11 +150,10 @@ class LoginViewController: UIViewController {
         let desc = description
         let image = image
         var attribute = EKAttributes.topFloat
-        let gradient = EKAttributes.BackgroundStyle.gradient(gradient: .init(colors: [.init(red: 175, green: 82, blue: 222), .init(red: 204, green: 102, blue: 255) ], startPoint: .zero, endPoint: CGPoint(x: 1, y: 1)))
         let blur = EKAttributes.BackgroundStyle.BlurStyle.init(light: .systemThinMaterialDark, dark: .systemThinMaterialDark)
         attribute.shadow = .active(with: .init(opacity: 0.8, radius: 10))
-        attribute.entryBackground = gradient
-        attribute.screenBackground = EKAttributes.BackgroundStyle.visualEffect(style: blur)
+        attribute.entryBackground = .color(color: EKColor(.systemPurple))
+        attribute.screenBackground = EKAttributes.BackgroundStyle.visualEffect(style: .prominent)
         
         
         showNotificationMessage(attributes: attribute,

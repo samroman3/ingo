@@ -35,7 +35,110 @@ class ProfileViewController: UIViewController {
         return tv
     }()
     
+    
+    lazy var profileImage: UIImageView = {
+        let image = UIImageView()
+        image.backgroundColor = .lightGray
+        image.image = UIImage(systemName: "person")
+        image.tintColor = .white
+        return image
+    }()
+    lazy var userName: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .left
+        label.textColor = .white
+        label.backgroundColor = .clear
+        label.text = "TestUsername"
+        return label
+    }()
+    lazy var totalPost: UILabel = {
+        let label = UILabel()
+        label.text = "0 \n Posts"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.textColor = .white
+        return label
+    }()
+    
+    lazy var editButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Edit Profile", for: .normal)
+        button.tintColor = .orange
+        button.backgroundColor = .init(white: 0.4, alpha: 0.8)
+        button.addTarget(self, action: #selector(editAction), for: .touchUpInside)
+        return button
+    }()
+    
+//    lazy var profileView: UIView = {
+//        let pv = UIView()
+//
+//        return pv
+//    }
 
+    @objc private func editAction(){
+        let editVC = ProfileEditViewController()
+        editVC.modalPresentationStyle = .fullScreen
+        present(editVC, animated: true, completion: nil)
+    }
+    
+    
+    private func setUpVC(){
+        constrainScrollView()
+        constrainOtherView()
+        constrainProfileImage()
+        constrainUserName()
+//        constrainEditButton()
+    }
+    
+    private func setUpSubViews(){
+        view.addSubview(scrollView)
+        scrollView.addSubview(profileTableView)
+        scrollView.addSubview(profileImage)
+        scrollView.addSubview(userName)
+    }
+    
+    private func setProfileImageRadius(){
+        profileImage.layer.cornerRadius = (profileImage.frame.size.width) / 2
+        profileImage.clipsToBounds = true
+        profileImage.layer.borderWidth = 3.0
+        profileImage.layer.borderColor = UIColor.white.cgColor
+    }
+    
+
+    private func constrainProfileImage(){
+           profileImage.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               profileImage.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+               profileImage.heightAnchor.constraint(equalToConstant: 150),
+//               profileImage.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor, constant: 10),
+               profileImage.widthAnchor.constraint(equalToConstant: 150),
+               profileImage.topAnchor.constraint(equalTo: profileTableView.topAnchor, constant: -175)
+               
+           ])
+       }
+       
+       
+    
+    private func constrainUserName(){
+           userName.translatesAutoresizingMaskIntoConstraints = false
+           NSLayoutConstraint.activate([
+               userName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 10),
+               userName.heightAnchor.constraint(equalToConstant: 30),
+               userName.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: 10),
+               userName.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+           ])
+       }
+    
+    private func constrainEditButton(){
+        view.addSubview(editButton)
+        editButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            editButton.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor, constant: 0),
+            editButton.heightAnchor.constraint(equalToConstant: 30),
+            editButton.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 5),
+            editButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+        ])
+    }
     
     
     func constrainScrollView(){
@@ -47,6 +150,7 @@ class ProfileViewController: UIViewController {
     }
     
     
+    
     func constrainOtherView() {
         profileTableView.translatesAutoresizingMaskIntoConstraints = false
         profileTableView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
@@ -56,21 +160,25 @@ class ProfileViewController: UIViewController {
         profileTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
     }
     
+   
+    
+    
+    
 
     override func viewDidLoad() {
-        view.addSubview(scrollView)
-        scrollView.addSubview(profileTableView)
+        super.viewDidLoad()
+        setUpSubViews()
         profileTableView.delegate = self
         profileTableView.dataSource = self
-        super.viewDidLoad()
-        
        }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        constrainScrollView()
-        constrainOtherView()
-        self.scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + profileTableView.frame.width )
+        setUpVC()
+        setProfileImageRadius()
+        self.scrollView.contentSize = CGSize(width: view.bounds.width, height: view.bounds.height + profileTableView.frame.width)
+        
+        
     }
 
 }
