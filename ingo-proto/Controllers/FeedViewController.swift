@@ -13,10 +13,6 @@ import CircleMenu
 class FeedViewController: UIViewController {
     
     
-    
-    
-    
-    
     //MARK: Lifecycle Methods
     
     override func viewDidLoad() {
@@ -51,7 +47,7 @@ class FeedViewController: UIViewController {
     
     
     //MARK: Private Properties
-    private var currentLocation = CLLocationCoordinate2D.init(latitude: 40.684042000, longitude: -73.909234000) {
+    private var currentLocation = CLLocationCoordinate2D.init(latitude: 40.756523, longitude: -73.974152) {
         didSet {
             setNeighborhood()
         }

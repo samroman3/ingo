@@ -33,7 +33,7 @@ class ProfileViewController: UIViewController {
     
     lazy var profileTableView: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = .blue
+        tv.backgroundColor = .init(white: 0.1, alpha: 0.8)
         tv.isScrollEnabled = false
         return tv
     }()
@@ -206,7 +206,7 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 20
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -214,7 +214,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 140
     }
     
 }
