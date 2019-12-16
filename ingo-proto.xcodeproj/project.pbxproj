@@ -11,6 +11,7 @@
 		3A3773D0237C53B60034EA59 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773CF237C53B60034EA59 /* MainTabViewController.swift */; };
 		3A3773D2237C54110034EA59 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773D1237C54110034EA59 /* FeedViewController.swift */; };
 		3A3773D4237C545A0034EA59 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773D3237C545A0034EA59 /* ProfileViewController.swift */; };
+		3A69DCE323A813F1004183CA /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A69DCE223A813F1004183CA /* TopCollectionViewCell.swift */; };
 		3A9ED687237B3E3400D64483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED686237B3E3400D64483 /* AppDelegate.swift */; };
 		3A9ED689237B3E3400D64483 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED688237B3E3400D64483 /* SceneDelegate.swift */; };
 		3A9ED68E237B3E3400D64483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A9ED68C237B3E3400D64483 /* Main.storyboard */; };
@@ -64,6 +65,7 @@
 		3A3773CF237C53B60034EA59 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		3A3773D1237C54110034EA59 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		3A3773D3237C545A0034EA59 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3A69DCE223A813F1004183CA /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopCollectionViewCell.swift; path = "/Users/samroman/Desktop/U5/ingo-proto/ingo-proto/Controllers/Views/TopCollectionViewCell.swift"; sourceTree = "<absolute>"; };
 		3A9ED683237B3E3400D64483 /* ingo-proto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ingo-proto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A9ED686237B3E3400D64483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A9ED688237B3E3400D64483 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 		3AF019D523A199D40030C8CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3A69DCE223A813F1004183CA /* TopCollectionViewCell.swift */,
 				3AF019D623A199F20030C8CD /* PostTableViewCell.swift */,
 			);
 			path = Views;
@@ -563,6 +566,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A69DCE323A813F1004183CA /* TopCollectionViewCell.swift in Sources */,
 				3AF019DA23A2D5870030C8CD /* CoreLocationHelper.swift in Sources */,
 				3A9ED6C6237B429000D64483 /* Comment.swift in Sources */,
 				3AF3631223947ADB006717C0 /* ProfileEditViewController.swift in Sources */,

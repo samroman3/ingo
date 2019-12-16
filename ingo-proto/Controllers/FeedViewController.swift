@@ -141,6 +141,9 @@ class FeedViewController: UIViewController {
     private func setUpVC(){
         constrainFeedTableView()
         constrainMenu()
+        constrainTopCollectionView()
+        topCollectionView.delegate = self
+        topCollectionView.dataSource = self
         self.locationManager.delegate = self
         view.backgroundColor = .init(white: 0.2, alpha: 0.8)
         self.feedTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
@@ -158,7 +161,13 @@ class FeedViewController: UIViewController {
     }()
     
     lazy var topCollectionView: UICollectionView = {
-        let cv = UICollectionView()
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
+        cv.backgroundColor = .clear
+        cv.isScrollEnabled = true
+        cv.showsHorizontalScrollIndicator = true
+        cv.register(TopCollectionViewCell.self, forCellWithReuseIdentifier: "topCell")
         return cv
     }()
     
@@ -178,14 +187,6 @@ class FeedViewController: UIViewController {
         return menu
     }()
     
-    
-//    lazy var neighborhoodLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = ""
-//        label.textColor = .white
-//        return label
-//    }()
-//
     
     
     //MARK: Constraint Methods
@@ -223,6 +224,18 @@ class FeedViewController: UIViewController {
         self.menuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 4)
     }()
     
+    
+    private func constrainTopCollectionView(){
+        view.addSubview(topCollectionView)
+        topCollectionView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            topCollectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 2),
+            topCollectionView.bottomAnchor.constraint(equalTo: feedTableView.topAnchor, constant: -2),
+            topCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            topCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+        ])
+        
+    }
     
     
     
@@ -382,6 +395,9 @@ extension FeedViewController: CircleMenuDelegate {
     
 }
 
+
+//MARK: CollectionView Extension
+
 extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -389,10 +405,13 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "topCell", for: indexPath) as! TopCollectionViewCell
+        return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 300, height: 150)
+    }
 }
 
 
