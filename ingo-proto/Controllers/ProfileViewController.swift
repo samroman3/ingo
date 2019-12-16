@@ -84,22 +84,21 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
           super.viewWillAppear(true)
           setUpVC()
+        profileImage.layer.cornerRadius = 75
+              profileImage.clipsToBounds = true
+              profileImage.layer.borderWidth = 3.0
+              profileImage.layer.borderColor = UIColor.white.cgColor
       }
       
       override func viewDidLoad() {
           super.viewDidLoad()
           setUpVC()
         navigationController?.navigationBar.isHidden = true
-        
           profileTableView.delegate = self
           profileTableView.dataSource = self
          }
       
       override func viewDidLayoutSubviews() {
-        profileImage.layer.cornerRadius = (profileImage.frame.size.width) / 2
-        profileImage.clipsToBounds = true
-        profileImage.layer.borderWidth = 3.0
-        profileImage.layer.borderColor = UIColor.white.cgColor
           self.scrollView.contentSize = CGSize(width: view.bounds.width, height: 200 + profileTableView.frame.height)
           
           
@@ -152,7 +151,6 @@ class ProfileViewController: UIViewController {
            NSLayoutConstraint.activate([
                profileImage.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
                profileImage.heightAnchor.constraint(equalToConstant: 150),
-//               profileImage.topAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.topAnchor, constant: 10),
                profileImage.widthAnchor.constraint(equalToConstant: 150),
                profileImage.topAnchor.constraint(equalTo: profileTableView.topAnchor, constant: -175)
                
