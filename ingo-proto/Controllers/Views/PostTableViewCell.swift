@@ -62,8 +62,8 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(usernameLabel)
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            usernameLabel.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: 2),
-            usernameLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 3),
+            usernameLabel.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: 0),
+            usernameLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 5),
             usernameLabel.heightAnchor.constraint(equalToConstant: 20)])
     }
     
@@ -93,6 +93,10 @@ class PostTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
             super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUpCell()
+        profileImage.layer.cornerRadius = 20
+        profileImage.clipsToBounds = true
+        profileImage.layer.borderWidth = 0.5
+        profileImage.layer.borderColor = UIColor.white.cgColor
         contentView.backgroundColor = .white
 
         }

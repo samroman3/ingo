@@ -40,7 +40,7 @@ class FeedViewController: UIViewController {
                self.feedTableView.rowHeight = UITableView.automaticDimension
                self.feedTableView.setNeedsLayout()
                self.feedTableView.layoutIfNeeded()
-               self.feedTableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+               self.feedTableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
         setNeighborhood()
         
     }
@@ -269,9 +269,19 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
               return
             case .success(let user):
                 cell.usernameLabel.text = user.userName!
+                FirebaseStorageService.profileManager.getUserImage(photoUrl: URL(string: user.photoURL!)!) { (result) in
+                switch result {
+                case .failure(let error):
+                    print(error)
+                case .success(let image):
+                    cell.profileImage.image = image
+                }
+                }
             }
         }
           }
+        
+        
         return cell
     }
     
