@@ -15,9 +15,11 @@ struct Post {
     let lat: Double
     let long: Double
     let neighborhood: String
+    let likes: Int
+    let dislikes: Int
     
     
-    init(body: String, creatorID: String, lat: Double, long: Double, neighborhood: String) {
+    init(body: String, creatorID: String, lat: Double, long: Double, neighborhood: String, likes: Int, dislikes: Int) {
 
         self.body = body
         self.creatorID = creatorID
@@ -25,6 +27,8 @@ struct Post {
         self.lat = lat
         self.long = long
         self.neighborhood = neighborhood
+        self.likes = likes
+        self.dislikes = dislikes
         
     }
     
@@ -33,14 +37,17 @@ struct Post {
         let userID = dict["creatorID"] as? String,
         let lat = dict["lat"] as? Double,
         let long = dict["long"] as? Double,
-        let neighborhood = dict["neighborhood"] as? String else { return nil }
+        let neighborhood = dict["neighborhood"] as? String,
+        let likes = dict["likes"] as? Int,
+        let dislikes = dict["dislikes"] as? Int else { return nil }
         self.body = body
         self.creatorID = userID
         self.id = id
         self.lat = lat
         self.long = long
         self.neighborhood = neighborhood
-
+        self.likes = likes
+        self.dislikes = dislikes
     }
     
     var fieldsDict: [String: Any] {
@@ -49,7 +56,9 @@ struct Post {
             "creatorID": self.creatorID,
             "lat": self.lat,
             "long": self.long,
-            "neighborhood": self.neighborhood
+            "neighborhood": self.neighborhood,
+            "likes": self.likes,
+            "dislikes": self.dislikes
         ]
     }
 }

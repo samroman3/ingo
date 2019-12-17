@@ -144,13 +144,14 @@ class LoginViewController: UIViewController {
     }()
     
     //MARK: Alert Methods
-    
+    //TODO: Move these to separate model file
     private func showFloatCellAlert(with attributes: EKAttributes, title: String, description: String, image: String?) {
         let title = title
         let desc = description
         let image = image
         var attribute = EKAttributes.topFloat
-        let blur = EKAttributes.BackgroundStyle.BlurStyle.init(light: .systemThinMaterialDark, dark: .systemThinMaterialDark)
+        
+//        let blur = EKAttributes.BackgroundStyle.BlurStyle.init(light: .systemThinMaterialDark, dark: .systemThinMaterialDark)
         attribute.shadow = .active(with: .init(opacity: 0.8, radius: 10))
         attribute.entryBackground = .color(color: EKColor(.systemPurple))
         attribute.screenBackground = EKAttributes.BackgroundStyle.visualEffect(style: .prominent)

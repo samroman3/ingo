@@ -16,7 +16,7 @@ class PostTableViewCell: UITableViewCell {
            label.textColor = .black
            label.numberOfLines = 0
            label.text = "usernameLabel"
-        label.font = label.font.withSize(13)
+        label.font = label.font.withSize(15)
            return label
        }()
 
@@ -26,7 +26,7 @@ class PostTableViewCell: UITableViewCell {
            label.textColor = .black
            label.numberOfLines = 0
            label.text = "Testing Body Label"
-         label.font = label.font.withSize(14)
+         label.font = label.font.withSize(13)
 
            return label
        }()
@@ -41,18 +41,29 @@ class PostTableViewCell: UITableViewCell {
        }()
     
     private func setUpCell(){
+       constrainProfileImage()
        constrainUserLabel()
        constrainBodyLabel()
         
     }
     
+    private func constrainProfileImage(){
+        contentView.addSubview(profileImage)
+        profileImage.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            profileImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            profileImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 2),
+            profileImage.heightAnchor.constraint(equalToConstant: 40),
+            profileImage.widthAnchor.constraint(equalToConstant: 40)
+        ])
+    }
    
     private func constrainUserLabel(){
         contentView.addSubview(usernameLabel)
         usernameLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            usernameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
-            usernameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
+            usernameLabel.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: 2),
+            usernameLabel.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 3),
             usernameLabel.heightAnchor.constraint(equalToConstant: 20)])
     }
     
@@ -60,10 +71,10 @@ class PostTableViewCell: UITableViewCell {
         contentView.addSubview(bodyLabel)
         bodyLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            bodyLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 5),
-            bodyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5),
-            bodyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 5),
-            bodyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
+            bodyLabel.topAnchor.constraint(equalTo: usernameLabel.bottomAnchor, constant: 3),
+            bodyLabel.leadingAnchor.constraint(equalTo: usernameLabel.leadingAnchor, constant: 3),
+            bodyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            bodyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5)
         ])
     }
 

@@ -66,7 +66,7 @@ class CreatePostViewController: UIViewController {
         guard bodyTextView.text != nil, bodyTextView.text != "", bodyTextView.text != "New Post..." else { return }
         guard let user = FirebaseAuthService.manager.currentUser else { return }
 
-        let newPost = Post(body: bodyTextView.text! , creatorID: user.uid, lat: currentLocation.latitude, long: currentLocation.longitude, neighborhood: neighborhood)
+        let newPost = Post(body: bodyTextView.text! , creatorID: user.uid, lat: currentLocation.latitude, long: currentLocation.longitude, neighborhood: neighborhood, likes: 0, dislikes: 0)
         FirestoreService.manager.createPost(post: newPost) { (result) in
             switch result {
             case .failure(let error):
