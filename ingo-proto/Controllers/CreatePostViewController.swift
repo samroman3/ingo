@@ -57,7 +57,6 @@ class CreatePostViewController: UIViewController {
     
     @objc func exitButtonPressed(sender: UIButton) {
         navigationController?.popViewController(animated: true)
-//        self.dismiss(animated: true, completion: nil)
     }
     
     
@@ -74,7 +73,6 @@ class CreatePostViewController: UIViewController {
             case .success():
                 print("created post")
                 self.navigationController?.popViewController(animated: true)
-//                self.dismiss(animated: true, completion: nil)
             }
         }
         
