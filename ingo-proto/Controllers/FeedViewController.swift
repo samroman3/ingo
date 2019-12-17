@@ -12,17 +12,13 @@ import CircleMenu
 
 class FeedViewController: UIViewController {
     
-    
     //MARK: Lifecycle Methods
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         setUpVC()
         locationAuthorization()
         setNeighborhood()
-       
-        
         // Do any additional setup after loading the view.
     }
     
@@ -36,11 +32,11 @@ class FeedViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         menuButton.layer.cornerRadius = (menuButton.frame.size.width) / 2
         menuButton.clipsToBounds = true
-        self.feedTableView.estimatedRowHeight = 180
-               self.feedTableView.rowHeight = UITableView.automaticDimension
-               self.feedTableView.setNeedsLayout()
-               self.feedTableView.layoutIfNeeded()
-               self.feedTableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
+        self.feedTableView.estimatedRowHeight = 200
+        self.feedTableView.rowHeight = UITableView.automaticDimension
+        self.feedTableView.setNeedsLayout()
+        self.feedTableView.layoutIfNeeded()
+        self.feedTableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         setNeighborhood()
         
     }
@@ -172,7 +168,6 @@ class FeedViewController: UIViewController {
         
         menu.buttonsCount = 2
         menu.setBackgroundImage(UIImage(systemName: "line.horizontal.3.decrease.circle"), for: .normal)
-
         //        menu.setBackgroundImage(UIImage(systemName: "xmark"), for: .selected)
         menu.tintColor = .white
         menu.duration = 0.4
@@ -217,7 +212,7 @@ class FeedViewController: UIViewController {
     }()
     
     lazy var menuButtonTrailing: NSLayoutConstraint = {
-        self.menuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 4)
+        self.menuButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0)
     }()
     
     
@@ -236,11 +231,6 @@ class FeedViewController: UIViewController {
     
     
 }
-    
-    
-   
-
-
 
     //MARK: TableView Extension
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
@@ -297,11 +287,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         
         return cell
     }
-    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 150
-//    }
-//
+
 }
 
     //MARK: LocationManager Delegate
