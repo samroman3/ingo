@@ -152,7 +152,7 @@ class FeedViewController: UIViewController {
     
     lazy var feedTableView: UITableView = {
         let tv = UITableView()
-        tv.backgroundColor = .init(white: 1, alpha: 1)
+        tv.backgroundColor = .clear
         return tv
     }()
     
@@ -245,10 +245,23 @@ class FeedViewController: UIViewController {
     //MARK: TableView Extension
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+       }
+
+       // Set the spacing between sections
+       func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 10
+       }
+
+       // Make the background color show through
+       func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+           let headerView = UIView()
+           headerView.backgroundColor = UIColor.clear
+           return headerView
+       }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return posts.count
     }
     
@@ -257,7 +270,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource {
         
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell", for: indexPath) as! PostTableViewCell
-        let post = posts[indexPath.row]
+        let post = posts[indexPath.section]
         cell.bodyLabel.text = post.body
         
         //sets username in postcell
