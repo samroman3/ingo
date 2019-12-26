@@ -1,7 +1,6 @@
 ingo* 
-*working title
 
-10.30.2019
+*working title
 
 Samuel Roman
 
