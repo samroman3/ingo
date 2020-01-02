@@ -42,7 +42,7 @@ class PostTableViewCell: UITableViewCell {
     
     lazy var likesLabel: UILabel = {
         let label = UILabel()
-        label.text = "Up:"
+        label.text = "Likes:"
         label.textAlignment = .left
         label.textColor = .black
         label.numberOfLines = 0
@@ -50,22 +50,22 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var dislikesLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Down:"
-        label.textAlignment = .left
-        label.textColor = .black
-        label.numberOfLines = 0
-        label.font = label.font.withSize(12)
-        return label
-    }()
+//    lazy var dislikesLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "Down:"
+//        label.textAlignment = .left
+//        label.textColor = .black
+//        label.numberOfLines = 0
+//        label.font = label.font.withSize(12)
+//        return label
+//    }()
     
     
     private func setUpCell(){
        constrainProfileImage()
        constrainUserLabel()
        constrainBodyLabel()
-        constrainLikesStack()
+        constrainLikesLabel()
         
     }
     
@@ -100,22 +100,19 @@ class PostTableViewCell: UITableViewCell {
         ])
     }
     
-    private func constrainLikesStack(){
-        let stackView = UIStackView(arrangedSubviews: [likesLabel, dislikesLabel])
-        stackView.axis = .horizontal
-        stackView.spacing = 5
-        stackView.distribution = .fillProportionally
-        contentView.addSubview(stackView)
-        stackView.translatesAutoresizingMaskIntoConstraints = false
+    private func constrainLikesLabel(){
+        contentView.addSubview(likesLabel)
+        likesLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-        stackView.topAnchor.constraint(equalTo: bodyLabel.bottomAnchor, constant: 5),
-        stackView.leadingAnchor.constraint(equalTo: usernameLabel.leadingAnchor, constant: 145),
-        stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-        stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
-        stackView.heightAnchor.constraint(equalToConstant: 30)
-        ])
-        
+               likesLabel.topAnchor.constraint(equalTo: bodyLabel.bottomAnchor, constant: 5),
+//               likesLabel.leadingAnchor.constraint(equalTo: usernameLabel.leadingAnchor, constant: 145),
+               likesLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -30),
+               likesLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10),
+               likesLabel.heightAnchor.constraint(equalToConstant: 30)
+               ])
     }
+    
+ 
 
     override func awakeFromNib() {
         super.awakeFromNib()
