@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PostTableViewCell: UITableViewCell {
+class PostCell: UICollectionViewCell {
     
     lazy var usernameLabel: UILabel = {
          let label = UILabel()
@@ -50,6 +50,13 @@ class PostTableViewCell: UITableViewCell {
         return label
     }()
     
+    lazy var heartImage: UIButton = {
+        let button = UIButton()
+        button.setBackgroundImage(UIImage(systemName: "heart")?.withTintColor(.systemPurple), for: .normal)
+        button.backgroundColor = .blue
+        return button
+    }()
+    
 //    lazy var dislikesLabel: UILabel = {
 //        let label = UILabel()
 //        label.text = "Down:"
@@ -66,6 +73,8 @@ class PostTableViewCell: UITableViewCell {
        constrainUserLabel()
        constrainBodyLabel()
         constrainLikesLabel()
+        constrainHeartImage()
+        contentView.layer.cornerRadius = 25
         
     }
     
@@ -100,6 +109,9 @@ class PostTableViewCell: UITableViewCell {
         ])
     }
     
+    
+    
+    
     private func constrainLikesLabel(){
         contentView.addSubview(likesLabel)
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -112,6 +124,16 @@ class PostTableViewCell: UITableViewCell {
                ])
     }
     
+    private func constrainHeartImage(){
+        contentView.addSubview(heartImage)
+        NSLayoutConstraint.activate([
+//            heartImage.trailingAnchor.constraint(equalTo: likesLabel.leadingAnchor, constant: -80),
+            heartImage.heightAnchor.constraint(equalToConstant: 40),
+        heartImage.widthAnchor.constraint(equalToConstant: 40)])
+    }
+    
+
+    
  
 
     override func awakeFromNib() {
@@ -119,23 +141,20 @@ class PostTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-            super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUpCell()
         profileImage.layer.cornerRadius = 20
         profileImage.clipsToBounds = true
         profileImage.layer.borderWidth = 0.5
         profileImage.layer.borderColor = UIColor.white.cgColor
         contentView.backgroundColor = .white
+        
+    }
+    
+  
+       
 
-        }
        required init(coder aDecoder: NSCoder) {
            fatalError("init(coder:) has not been implemented")
        }
