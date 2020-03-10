@@ -28,6 +28,7 @@
 		3A9ED6CC237B42CF00D64483 /* FirestoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */; };
 		3A9ED6CE237B446600D64483 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6CD237B446600D64483 /* LoginViewController.swift */; };
 		3AB9A4A72417E93B0051C4D6 /* ProfileInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9A4A62417E93B0051C4D6 /* ProfileInfoCell.swift */; };
+		3AB9A4A92417F5AE0051C4D6 /* SoftUIEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AB9A4A82417F5AE0051C4D6 /* SoftUIEffect.swift */; };
 		3AF019D423A15B890030C8CD /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019D323A15B890030C8CD /* CreatePostViewController.swift */; };
 		3AF019D723A199F20030C8CD /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019D623A199F20030C8CD /* PostCell.swift */; };
 		3AF019DA23A2D5870030C8CD /* CoreLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019D923A2D5870030C8CD /* CoreLocationHelper.swift */; };
@@ -89,6 +90,7 @@
 		3A9ED6CB237B42CF00D64483 /* FirestoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreService.swift; sourceTree = "<group>"; };
 		3A9ED6CD237B446600D64483 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3AB9A4A62417E93B0051C4D6 /* ProfileInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoCell.swift; sourceTree = "<group>"; };
+		3AB9A4A82417F5AE0051C4D6 /* SoftUIEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoftUIEffect.swift; sourceTree = "<group>"; };
 		3AF019D323A15B890030C8CD /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		3AF019D623A199F20030C8CD /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		3AF019D923A2D5870030C8CD /* CoreLocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationHelper.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 				3A69DCE223A813F1004183CA /* TopCollectionViewCell.swift */,
 				3AF019D623A199F20030C8CD /* PostCell.swift */,
 				3AB9A4A62417E93B0051C4D6 /* ProfileInfoCell.swift */,
+				3AB9A4A82417F5AE0051C4D6 /* SoftUIEffect.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 				3AF36310239478B9006717C0 /* FirebaseStorageService.swift in Sources */,
 				3A3773D0237C53B60034EA59 /* MainTabViewController.swift in Sources */,
 				3AF019E323A41DC50030C8CD /* LocationIQSecrets.swift in Sources */,
+				3AB9A4A92417F5AE0051C4D6 /* SoftUIEffect.swift in Sources */,
 				3A9ED689237B3E3400D64483 /* SceneDelegate.swift in Sources */,
 				3AF019E923A420410030C8CD /* LocationData.swift in Sources */,
 				3A9ED6CC237B42CF00D64483 /* FirestoreService.swift in Sources */,

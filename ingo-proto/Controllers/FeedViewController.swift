@@ -134,10 +134,10 @@ class FeedViewController: UIViewController {
         feedCV.delegate = self
         feedCV.dataSource = self
         self.locationManager.delegate = self
-        view.backgroundColor = .init(white: 0.2, alpha: 0.8)
+        view.backgroundColor = UIColor(red: 241, green: 241, blue: 241, alpha: 1)
         //        self.feedTableView.register(PostTableViewCell.self, forCellReuseIdentifier: "FeedCell")
         
-        
+
     }
     
     
@@ -154,7 +154,7 @@ class FeedViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .clear
+        cv.backgroundColor = UIColor(red: 241, green: 241, blue: 241, alpha: 1)
         cv.isScrollEnabled = true
         cv.showsHorizontalScrollIndicator = true
         cv.register(TopCollectionViewCell.self, forCellWithReuseIdentifier: "topCell")
@@ -166,7 +166,7 @@ class FeedViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         let cv = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        cv.backgroundColor = .clear
+        cv.backgroundColor = UIColor(red: 241, green: 241, blue: 241, alpha: 1)
         cv.isScrollEnabled = true
         cv.showsHorizontalScrollIndicator = true
         cv.register(PostCell.self, forCellWithReuseIdentifier: "PostCell")
@@ -254,7 +254,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = feedCV.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
         let post = posts[indexPath.section]
         cell.bodyLabel.text = post.body
-        
         //sets username in postcell
         FirestoreService.manager.getUserFromPost(creatorID: post.creatorID) { (result) in
             DispatchQueue.main.async {
@@ -263,7 +262,6 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
                     print(error)
                     return
                 case .success(let user):
-                    cell.usernameLabel.text = user.userName!
                     FirebaseStorageService.profileManager.getUserImage(photoUrl: URL(string: user.photoURL!)!) { (result) in
                         switch result {
                         case .failure(let error):
@@ -281,8 +279,13 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width - 5, height: 200)
+        return CGSize(width: view.frame.width - 10, height: 145)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        <#code#>
+    }
+    
 
 }
 
