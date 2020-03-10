@@ -385,9 +385,9 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 button.showsTouchWhenHighlighted = true
             case 1:
                 button.showsTouchWhenHighlighted = true
-                button.setBackgroundImage(UIImage(systemName: "camera.circle"), for: .normal)
+                button.setBackgroundImage(UIImage(systemName: ""), for: .normal)
                 button.tintColor = .white
-                button.backgroundColor = .systemBlue
+                button.backgroundColor = .systemGray
             default:
                 break
             }

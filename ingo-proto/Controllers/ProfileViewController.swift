@@ -17,23 +17,12 @@ class ProfileViewController: UIViewController {
     
     var imageURL: String? = nil
     
-   
-    lazy var scrollView: UIScrollView = {
-        let sv = UIScrollView()
-        sv.isScrollEnabled = true
-        sv.backgroundColor = .gray
-        sv.showsVerticalScrollIndicator = true
-        sv.decelerationRate = .fast
-        return sv
-    }()
-    
     
     
     
     lazy var profileTableView: UITableView = {
         let tv = UITableView()
         tv.backgroundColor = .init(white: 0.1, alpha: 0.8)
-        tv.isScrollEnabled = false
         return tv
     }()
     
@@ -62,14 +51,16 @@ class ProfileViewController: UIViewController {
         return label
     }()
     
-    lazy var editButton: UIButton = {
+    lazy var logOutButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Edit Profile", for: .normal)
+        button.setTitle("Log Out", for: .normal)
         button.tintColor = .orange
         button.backgroundColor = .init(white: 0.4, alpha: 0.8)
         button.addTarget(self, action: #selector(editAction), for: .touchUpInside)
         return button
     }()
+    
+    
     
 
     @objc private func editAction(){
@@ -96,12 +87,7 @@ class ProfileViewController: UIViewController {
           profileTableView.delegate = self
           profileTableView.dataSource = self
          }
-      
-      override func viewDidLayoutSubviews() {
-          self.scrollView.contentSize = CGSize(width: view.bounds.width, height: 200 + profileTableView.frame.height)
-          
-          
-      }
+    
     
     
     
@@ -127,79 +113,68 @@ class ProfileViewController: UIViewController {
     
     private func setUpVC(){
         setUpSubViews()
-        constrainScrollView()
-        constrainOtherView()
-        constrainProfileImage()
-        constrainUserName()
-        setProfileImage()
-        setUserName()
-//        constrainEditButton()
+        constrainProfileTableView()
+//        setUserName()
+//        constrainLogOutButton()
     }
     
     private func setUpSubViews(){
-        view.addSubview(scrollView)
-        scrollView.addSubview(profileTableView)
-        scrollView.addSubview(profileImage)
-        scrollView.addSubview(userName)
+        view.addSubview(profileTableView)
+//        view.addSubview(profileImage)
+//        view.addSubview(userName)
     }
    
     
 
-    private func constrainProfileImage(){
-           profileImage.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([
-               profileImage.leadingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-               profileImage.heightAnchor.constraint(equalToConstant: 150),
-               profileImage.widthAnchor.constraint(equalToConstant: 150),
-               profileImage.topAnchor.constraint(equalTo: profileTableView.topAnchor, constant: -175)
-               
-           ])
-       }
-       
+//    private func constrainProfileImage(){
+//           profileImage.translatesAutoresizingMaskIntoConstraints = false
+//           NSLayoutConstraint.activate([
+//               profileImage.leadingAnchor.constraint(equalTo: profileTableView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+//               profileImage.heightAnchor.constraint(equalToConstant: 150),
+//               profileImage.widthAnchor.constraint(equalToConstant: 150),
+//               profileImage.topAnchor.constraint(equalTo: profileTableView.topAnchor, constant: -175)
+//
+//           ])
+//       }
+//
        
     
-    private func constrainUserName(){
-           userName.translatesAutoresizingMaskIntoConstraints = false
-           NSLayoutConstraint.activate([
-               userName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 10),
-               userName.heightAnchor.constraint(equalToConstant: 30),
-               userName.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: 25),
-               userName.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -10)
-           ])
-       }
+//    private func constrainUserName(){
+//           userName.translatesAutoresizingMaskIntoConstraints = false
+//           NSLayoutConstraint.activate([
+//               userName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 10),
+//               userName.heightAnchor.constraint(equalToConstant: 30),
+//               userName.topAnchor.constraint(equalTo: profileImage.topAnchor, constant: 25),
+//               userName.trailingAnchor.constraint(equalTo: scrollView.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+//           ])
+//       }
+//
+//    private func constrainLogOutButton(){
+//        view.addSubview(logOutButton)
+//        logOutButton.translatesAutoresizingMaskIntoConstraints = false
+//        NSLayoutConstraint.activate([
+//            logOutButton.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor, constant: 0),
+//            logOutButton.heightAnchor.constraint(equalToConstant: 30),
+//            logOutButton.topAnchor.constraint(equalTo: profileImage.bottomAnchor, constant: 5),
+//            logOutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+//        ])
+//    }
     
-    private func constrainEditButton(){
-        view.addSubview(editButton)
-        editButton.translatesAutoresizingMaskIntoConstraints = false
+    
+
+    func constrainProfileTableView() {
+        profileTableView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            editButton.leadingAnchor.constraint(equalTo: profileImage.leadingAnchor, constant: 0),
-            editButton.heightAnchor.constraint(equalToConstant: 30),
-            editButton.topAnchor.constraint(equalTo: userName.bottomAnchor, constant: 5),
-            editButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10)
+            profileTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            profileTableView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            profileTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
     
-    
-    func constrainScrollView(){
-    scrollView.translatesAutoresizingMaskIntoConstraints = false
-       scrollView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
-       scrollView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-       scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-    }
-    
-    
-    
-    func constrainOtherView() {
-        profileTableView.translatesAutoresizingMaskIntoConstraints = false
-        profileTableView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
-        profileTableView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
-//        otherView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor, constant: 0).isActive = true
-        profileTableView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor, constant: 200).isActive = true
-        profileTableView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor).isActive = true
-    }
-
 }
+    
+    
+ 
 
 
 extension ProfileViewController: UITableViewDelegate, UITableViewDataSource {
