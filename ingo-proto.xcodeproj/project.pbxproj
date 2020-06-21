@@ -12,7 +12,8 @@
 		3A3773D2237C54110034EA59 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773D1237C54110034EA59 /* FeedViewController.swift */; };
 		3A3773D4237C545A0034EA59 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773D3237C545A0034EA59 /* ProfileViewController.swift */; };
 		3A8E4335249FBBA800F18AB8 /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E4334249FBBA800F18AB8 /* TopCollectionViewCell.swift */; };
-		3A8E4337249FC0EF00F18AB8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A8E4336249FC0EF00F18AB8 /* GoogleService-Info.plist */; };
+		3A8E433A249FC75400F18AB8 /* LocationIQSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E4339249FC75400F18AB8 /* LocationIQSecrets.swift */; };
+		3A8E433C249FC75A00F18AB8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A8E433B249FC75A00F18AB8 /* GoogleService-Info.plist */; };
 		3A9ED687237B3E3400D64483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED686237B3E3400D64483 /* AppDelegate.swift */; };
 		3A9ED689237B3E3400D64483 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED688237B3E3400D64483 /* SceneDelegate.swift */; };
 		3A9ED68E237B3E3400D64483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A9ED68C237B3E3400D64483 /* Main.storyboard */; };
@@ -34,7 +35,6 @@
 		3AF019DA23A2D5870030C8CD /* CoreLocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019D923A2D5870030C8CD /* CoreLocationHelper.swift */; };
 		3AF019DE23A41CBE0030C8CD /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019DD23A41CBE0030C8CD /* NetworkManager.swift */; };
 		3AF019E023A41CDB0030C8CD /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019DF23A41CDB0030C8CD /* AppError.swift */; };
-		3AF019E323A41DC50030C8CD /* LocationIQSecrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019E223A41DC50030C8CD /* LocationIQSecrets.swift */; };
 		3AF019E723A41FF50030C8CD /* locationtest.json in Resources */ = {isa = PBXBuildFile; fileRef = 3AF019E623A41FF50030C8CD /* locationtest.json */; };
 		3AF019E923A420410030C8CD /* LocationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019E823A420410030C8CD /* LocationData.swift */; };
 		3AF019EC23A4234A0030C8CD /* LocationAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF019EB23A4234A0030C8CD /* LocationAPIClient.swift */; };
@@ -68,7 +68,8 @@
 		3A3773D1237C54110034EA59 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		3A3773D3237C545A0034EA59 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3A8E4334249FBBA800F18AB8 /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
-		3A8E4336249FC0EF00F18AB8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		3A8E4339249FC75400F18AB8 /* LocationIQSecrets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationIQSecrets.swift; sourceTree = "<group>"; };
+		3A8E433B249FC75A00F18AB8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A9ED683237B3E3400D64483 /* ingo-proto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ingo-proto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A9ED686237B3E3400D64483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A9ED688237B3E3400D64483 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		3AF019D923A2D5870030C8CD /* CoreLocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreLocationHelper.swift; sourceTree = "<group>"; };
 		3AF019DD23A41CBE0030C8CD /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3AF019DF23A41CDB0030C8CD /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
-		3AF019E223A41DC50030C8CD /* LocationIQSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationIQSecrets.swift; sourceTree = "<group>"; };
 		3AF019E623A41FF50030C8CD /* locationtest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locationtest.json; sourceTree = "<group>"; };
 		3AF019E823A420410030C8CD /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
 		3AF019EB23A4234A0030C8CD /* LocationAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAPIClient.swift; sourceTree = "<group>"; wrapsLines = 0; };
@@ -164,6 +164,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		3A8E4338249FC73800F18AB8 /* Secrets */ = {
+			isa = PBXGroup;
+			children = (
+				3A8E4339249FC75400F18AB8 /* LocationIQSecrets.swift */,
+				3A8E433B249FC75A00F18AB8 /* GoogleService-Info.plist */,
+			);
+			path = Secrets;
+			sourceTree = "<group>";
+		};
 		3A9ED67A237B3E3400D64483 = {
 			isa = PBXGroup;
 			children = (
@@ -189,7 +198,7 @@
 		3A9ED685237B3E3400D64483 /* ingo-proto */ = {
 			isa = PBXGroup;
 			children = (
-				3AF019E123A41DB10030C8CD /* Secrets */,
+				3A8E4338249FC73800F18AB8 /* Secrets */,
 				3A9ED6B8237B414C00D64483 /* Controllers */,
 				3A9ED6BC237B41B400D64483 /* Models */,
 				3A9ED6BF237B421F00D64483 /* Utilities */,
@@ -322,15 +331,6 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
-		3AF019E123A41DB10030C8CD /* Secrets */ = {
-			isa = PBXGroup;
-			children = (
-				3AF019E223A41DC50030C8CD /* LocationIQSecrets.swift */,
-				3A8E4336249FC0EF00F18AB8 /* GoogleService-Info.plist */,
-			);
-			path = Secrets;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -441,7 +441,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A9ED693237B3E3700D64483 /* LaunchScreen.storyboard in Resources */,
-				3A8E4337249FC0EF00F18AB8 /* GoogleService-Info.plist in Resources */,
+				3A8E433C249FC75A00F18AB8 /* GoogleService-Info.plist in Resources */,
 				3A9ED690237B3E3700D64483 /* Assets.xcassets in Resources */,
 				3A9ED68E237B3E3400D64483 /* Main.storyboard in Resources */,
 			);
@@ -584,6 +584,7 @@
 				3A3773D2237C54110034EA59 /* FeedViewController.swift in Sources */,
 				3AF019DE23A41CBE0030C8CD /* NetworkManager.swift in Sources */,
 				3A9ED6CE237B446600D64483 /* LoginViewController.swift in Sources */,
+				3A8E433A249FC75400F18AB8 /* LocationIQSecrets.swift in Sources */,
 				3A9ED6C8237B42A100D64483 /* Post.swift in Sources */,
 				3AB9A4A72417E93B0051C4D6 /* ProfileInfoCell.swift in Sources */,
 				3AF019E023A41CDB0030C8CD /* AppError.swift in Sources */,
@@ -591,7 +592,6 @@
 				3AF36310239478B9006717C0 /* FirebaseStorageService.swift in Sources */,
 				3A8E4335249FBBA800F18AB8 /* TopCollectionViewCell.swift in Sources */,
 				3A3773D0237C53B60034EA59 /* MainTabViewController.swift in Sources */,
-				3AF019E323A41DC50030C8CD /* LocationIQSecrets.swift in Sources */,
 				3AB9A4A92417F5AE0051C4D6 /* SoftUIEffect.swift in Sources */,
 				3A9ED689237B3E3400D64483 /* SceneDelegate.swift in Sources */,
 				3AF019E923A420410030C8CD /* LocationData.swift in Sources */,
