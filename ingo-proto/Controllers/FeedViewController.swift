@@ -58,7 +58,7 @@ class FeedViewController: UIViewController {
         didSet {
             
             navigationItem.title = dataForLocation?.address?.neighbourhood
-            self.neighborhood = (dataForLocation?.address?.neighbourhood)!
+            self.neighborhood = dataForLocation?.address?.neighbourhood ?? ""
             getPostsForLocation(neighborhood: neighborhood)
         }
     }
@@ -107,6 +107,7 @@ class FeedViewController: UIViewController {
                     print(error)
                 case .success(let data):
                     self.dataForLocation = data
+                    print(self.dataForLocation?.address)
                 }
             }
         }
@@ -283,7 +284,7 @@ extension FeedViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        <#code#>
+        return 30
     }
     
 

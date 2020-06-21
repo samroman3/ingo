@@ -11,7 +11,8 @@
 		3A3773D0237C53B60034EA59 /* MainTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773CF237C53B60034EA59 /* MainTabViewController.swift */; };
 		3A3773D2237C54110034EA59 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773D1237C54110034EA59 /* FeedViewController.swift */; };
 		3A3773D4237C545A0034EA59 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A3773D3237C545A0034EA59 /* ProfileViewController.swift */; };
-		3A69DCE323A813F1004183CA /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A69DCE223A813F1004183CA /* TopCollectionViewCell.swift */; };
+		3A8E4335249FBBA800F18AB8 /* TopCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8E4334249FBBA800F18AB8 /* TopCollectionViewCell.swift */; };
+		3A8E4337249FC0EF00F18AB8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A8E4336249FC0EF00F18AB8 /* GoogleService-Info.plist */; };
 		3A9ED687237B3E3400D64483 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED686237B3E3400D64483 /* AppDelegate.swift */; };
 		3A9ED689237B3E3400D64483 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED688237B3E3400D64483 /* SceneDelegate.swift */; };
 		3A9ED68E237B3E3400D64483 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A9ED68C237B3E3400D64483 /* Main.storyboard */; };
@@ -19,7 +20,6 @@
 		3A9ED693237B3E3700D64483 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A9ED691237B3E3700D64483 /* LaunchScreen.storyboard */; };
 		3A9ED69E237B3E3700D64483 /* ingo_protoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED69D237B3E3700D64483 /* ingo_protoTests.swift */; };
 		3A9ED6A9237B3E3700D64483 /* ingo_protoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6A8237B3E3700D64483 /* ingo_protoUITests.swift */; };
-		3A9ED6B7237B3E8900D64483 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3A9ED6B6237B3E8900D64483 /* GoogleService-Info.plist */; };
 		3A9ED6C2237B425300D64483 /* String+Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C1237B425300D64483 /* String+Validations.swift */; };
 		3A9ED6C4237B427E00D64483 /* AppUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C3237B427E00D64483 /* AppUser.swift */; };
 		3A9ED6C6237B429000D64483 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A9ED6C5237B429000D64483 /* Comment.swift */; };
@@ -67,7 +67,8 @@
 		3A3773CF237C53B60034EA59 /* MainTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabViewController.swift; sourceTree = "<group>"; };
 		3A3773D1237C54110034EA59 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		3A3773D3237C545A0034EA59 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		3A69DCE223A813F1004183CA /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TopCollectionViewCell.swift; path = "/Users/samroman/Desktop/U5/ingo-proto/ingo-proto/Controllers/Views/TopCollectionViewCell.swift"; sourceTree = "<absolute>"; };
+		3A8E4334249FBBA800F18AB8 /* TopCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopCollectionViewCell.swift; sourceTree = "<group>"; };
+		3A8E4336249FC0EF00F18AB8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A9ED683237B3E3400D64483 /* ingo-proto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ingo-proto.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A9ED686237B3E3400D64483 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A9ED688237B3E3400D64483 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		3A9ED6A4237B3E3700D64483 /* ingo-protoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ingo-protoUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A9ED6A8237B3E3700D64483 /* ingo_protoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ingo_protoUITests.swift; sourceTree = "<group>"; };
 		3A9ED6AA237B3E3700D64483 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3A9ED6B6237B3E8900D64483 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		3A9ED6C1237B425300D64483 /* String+Validations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Validations.swift"; sourceTree = "<group>"; };
 		3A9ED6C3237B427E00D64483 /* AppUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUser.swift; sourceTree = "<group>"; };
 		3A9ED6C5237B429000D64483 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -99,7 +99,7 @@
 		3AF019E223A41DC50030C8CD /* LocationIQSecrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationIQSecrets.swift; sourceTree = "<group>"; };
 		3AF019E623A41FF50030C8CD /* locationtest.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = locationtest.json; sourceTree = "<group>"; };
 		3AF019E823A420410030C8CD /* LocationData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationData.swift; sourceTree = "<group>"; };
-		3AF019EB23A4234A0030C8CD /* LocationAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAPIClient.swift; sourceTree = "<group>"; };
+		3AF019EB23A4234A0030C8CD /* LocationAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAPIClient.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		3AF3630D2394760B006717C0 /* Vote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vote.swift; sourceTree = "<group>"; };
 		3AF3630F239478B9006717C0 /* FirebaseStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseStorageService.swift; sourceTree = "<group>"; };
 		3AF3631123947ADB006717C0 /* ProfileEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditViewController.swift; sourceTree = "<group>"; };
@@ -296,7 +296,7 @@
 		3AF019D523A199D40030C8CD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				3A69DCE223A813F1004183CA /* TopCollectionViewCell.swift */,
+				3A8E4334249FBBA800F18AB8 /* TopCollectionViewCell.swift */,
 				3AF019D623A199F20030C8CD /* PostCell.swift */,
 				3AB9A4A62417E93B0051C4D6 /* ProfileInfoCell.swift */,
 				3AB9A4A82417F5AE0051C4D6 /* SoftUIEffect.swift */,
@@ -326,7 +326,7 @@
 			isa = PBXGroup;
 			children = (
 				3AF019E223A41DC50030C8CD /* LocationIQSecrets.swift */,
-				3A9ED6B6237B3E8900D64483 /* GoogleService-Info.plist */,
+				3A8E4336249FC0EF00F18AB8 /* GoogleService-Info.plist */,
 			);
 			path = Secrets;
 			sourceTree = "<group>";
@@ -441,9 +441,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A9ED693237B3E3700D64483 /* LaunchScreen.storyboard in Resources */,
+				3A8E4337249FC0EF00F18AB8 /* GoogleService-Info.plist in Resources */,
 				3A9ED690237B3E3700D64483 /* Assets.xcassets in Resources */,
 				3A9ED68E237B3E3400D64483 /* Main.storyboard in Resources */,
-				3A9ED6B7237B3E8900D64483 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,7 +572,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A69DCE323A813F1004183CA /* TopCollectionViewCell.swift in Sources */,
 				3AF019DA23A2D5870030C8CD /* CoreLocationHelper.swift in Sources */,
 				3A9ED6C6237B429000D64483 /* Comment.swift in Sources */,
 				3AF3631223947ADB006717C0 /* ProfileEditViewController.swift in Sources */,
@@ -590,6 +589,7 @@
 				3AF019E023A41CDB0030C8CD /* AppError.swift in Sources */,
 				3A3773D4237C545A0034EA59 /* ProfileViewController.swift in Sources */,
 				3AF36310239478B9006717C0 /* FirebaseStorageService.swift in Sources */,
+				3A8E4335249FBBA800F18AB8 /* TopCollectionViewCell.swift in Sources */,
 				3A3773D0237C53B60034EA59 /* MainTabViewController.swift in Sources */,
 				3AF019E323A41DC50030C8CD /* LocationIQSecrets.swift in Sources */,
 				3AB9A4A92417F5AE0051C4D6 /* SoftUIEffect.swift in Sources */,
