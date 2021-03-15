@@ -6,6 +6,7 @@ target 'ingo-proto' do
   use_frameworks!
 
   # Pods for ingo-proto
+	pod 'Firebase'
 	pod 'Firebase/Auth'
 	pod 'Firebase/Firestore'
 	pod 'Firebase/Storage'
