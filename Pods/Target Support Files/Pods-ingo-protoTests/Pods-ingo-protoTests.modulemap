@@ -1,6 +1,0 @@
-framework module Pods_ingo_protoTests {
-  umbrella header "Pods-ingo-protoTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
